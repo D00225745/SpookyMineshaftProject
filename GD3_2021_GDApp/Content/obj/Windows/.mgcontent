@@ -4,59 +4,59 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Demo/Textures/checkerboard.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Demo/Textures/mona lisa.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Fonts/menu.spritefont</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Fonts/ui.spritefont</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Models/cube.FBX</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Models/sphere.FBX</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Breathing2.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet2.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/ElevatorOpening.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/explode1.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOff.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOn.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/GearPickup.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat2.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/InventoryMap.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/MineWhispers.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Motors.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Rock1.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/RockCrashingV3.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/smokealarm1.ogg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Steps.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Swing.mp3</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/backwall.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/sidewall.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/wall.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Ground/grass_midlevel.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Ground/grass1.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree1.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree2.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree3.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree4.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree5.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Props/Crates/crate1.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Props/Crates/crate5.jpg</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/back.bmp</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/front.bmp</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/left.bmp</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/right.bmp</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/sky.bmp</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/audiomenu.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/controlsmenu.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/exitmenu.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/exitmenuwithtrans.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/mainmenu.PNG</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/genericbtn.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/progress_gradient.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/progress_white.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/reticuleClosed.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/reticuleDefault.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/reticuleOpen.png</File>
-    <File>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Progress/ui_progress_32_8.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Demo/Textures/checkerboard.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Demo/Textures/mona lisa.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Fonts/menu.spritefont</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Fonts/ui.spritefont</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Models/cube.FBX</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Models/sphere.FBX</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Breathing2.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet2.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/ElevatorOpening.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/explode1.mp3</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOff.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOn.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/GearPickup.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat2.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/InventoryMap.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/MineWhispers.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Motors.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Rock1.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/RockCrashingV3.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/smokealarm1.ogg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Steps.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Swing.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/backwall.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/sidewall.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/wall.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Ground/grass_midlevel.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Ground/grass1.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree1.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree2.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree3.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree4.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Foliage/Trees/tree5.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Props/Crates/crate1.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Props/Crates/crate5.jpg</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/back.bmp</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/front.bmp</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/left.bmp</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/right.bmp</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Skybox/sky.bmp</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/audiomenu.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/controlsmenu.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/exitmenu.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/exitmenuwithtrans.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Backgrounds/mainmenu.PNG</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/genericbtn.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/progress_gradient.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/progress_white.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/reticuleClosed.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/reticuleDefault.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Controls/reticuleOpen.png</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/UI/Progress/ui_progress_32_8.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

@@ -10,24 +10,24 @@
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Fonts/ui.spritefont</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Models/cube.FBX</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Models/sphere.FBX</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Breathing2.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet2.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/ElevatorOpening.mp3</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Breathing2.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Droplet2.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/ElevatorOpening.wav</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/explode1.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOff.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOn.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/GearPickup.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat2.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/InventoryMap.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/MineWhispers.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Motors.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Rock1.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/RockCrashingV3.mp3</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOff.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOn.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/GearPickup.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Heartbeat2.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/InventoryMap.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/MineWhispers.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Motors.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Rock1.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/RockCrashingV3.wav</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/smokealarm1.ogg</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Steps.mp3</File>
-    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Swing.mp3</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Steps.wav</File>
+    <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Swing.wav</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/backwall.jpg</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/sidewall.jpg</File>
     <File>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Textures/Architecture/Walls/wall.jpg</File>
