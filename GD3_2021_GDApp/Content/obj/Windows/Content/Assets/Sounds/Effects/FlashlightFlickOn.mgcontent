@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/FlashlightFlickOn.mp3</SourceFile>
+  <SourceTime>2021-11-23T17:13:00+00:00</SourceTime>
+  <DestFile>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Sounds/Effects/FlashlightFlickOn.xnb</DestFile>
+  <DestTime>2021-11-24T10:08:29.0255563+00:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2020-08-10T16:17:54+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Sounds/Effects/FlashlightFlickOn.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>
