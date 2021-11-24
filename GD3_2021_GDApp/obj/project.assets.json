@@ -7385,11 +7385,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj",
+      "projectUniqueName": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj",
       "projectName": "GDApp",
-      "projectPath": "D:\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj",
+      "projectPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj",
       "packagesPath": "C:\\Users\\Berk\\.nuget\\packages\\",
-      "outputPath": "D:\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\obj\\",
+      "outputPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Berk\\AppData\\Roaming\\NuGet\\NuGet.Config",

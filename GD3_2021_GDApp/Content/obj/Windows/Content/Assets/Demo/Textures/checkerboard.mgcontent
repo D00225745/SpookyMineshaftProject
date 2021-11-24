@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Demo/Textures/checkerboard.png</SourceFile>
+  <SourceFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Demo/Textures/checkerboard.png</SourceFile>
   <SourceTime>2021-11-23T11:53:07+00:00</SourceTime>
-  <DestFile>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Demo/Textures/checkerboard.xnb</DestFile>
-  <DestTime>2021-11-24T10:08:21.9294375+00:00</DestTime>
+  <DestFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Demo/Textures/checkerboard.xnb</DestFile>
+  <DestTime>2021-11-24T12:10:22.7998585+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

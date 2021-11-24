@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Breathing2.mp3</SourceFile>
+  <SourceFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Breathing2.mp3</SourceFile>
   <SourceTime>2021-11-23T17:13:00+00:00</SourceTime>
-  <DestFile>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Sounds/Effects/Breathing2.xnb</DestFile>
-  <DestTime>2021-11-24T10:08:23.9374981+00:00</DestTime>
+  <DestFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Sounds/Effects/Breathing2.xnb</DestFile>
+  <DestTime>2021-11-24T12:10:23.8514176+00:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>D:/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Sounds/Effects/Breathing2.wma</string>
+    <string>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Content/Assets/Sounds/Effects/Breathing2.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

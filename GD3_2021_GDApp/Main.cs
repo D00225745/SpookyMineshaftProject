@@ -156,10 +156,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-                object[] parameters = { "MineWhispers"};
-
-                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay, parameters));
 
             //Breathing2
             soundManager.Add(new GDLibrary.Managers.Cue("Breathing2",
@@ -167,10 +163,8 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Breathing2" };
+            
 
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //Droplet
             soundManager.Add(new GDLibrary.Managers.Cue("Droplet",
@@ -178,10 +172,8 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Droplet" };
+            
 
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //Droplet2
             soundManager.Add(new GDLibrary.Managers.Cue("Droplet2",
@@ -189,10 +181,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Droplet2" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //ElevatorOpening
             soundManager.Add(new GDLibrary.Managers.Cue("ElevatorOpening",
@@ -200,10 +188,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "ElevatorOpening" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //FlashlightFlickOff
             soundManager.Add(new GDLibrary.Managers.Cue("FlashlightFlickOff",
@@ -211,21 +195,11 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "FlashlightFlickOff" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
-
             //FlashlightFlickOn
             soundManager.Add(new GDLibrary.Managers.Cue("FlashlightFlickOn",
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/FlashlightFlickOn"),
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
-
-
-            object[] parameters = { "FlashlightFlickOn" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
+               
 
             //GearPickup
             soundManager.Add(new GDLibrary.Managers.Cue("GearPickup",
@@ -233,21 +207,12 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "GearPickup" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
-
             //Heartbeat
             soundManager.Add(new GDLibrary.Managers.Cue("Heartbeat",
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Heartbeat"),
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Heartbaet" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //Heartbeat2
             soundManager.Add(new GDLibrary.Managers.Cue("Heartbeat2",
@@ -255,10 +220,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Hearbeat2" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //InventoryMap
             soundManager.Add(new GDLibrary.Managers.Cue("InventoryMap",
@@ -266,10 +227,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "InventoryMap" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //Motors
             soundManager.Add(new GDLibrary.Managers.Cue("Motors",
@@ -277,10 +234,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Motors" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //Rock1
             soundManager.Add(new GDLibrary.Managers.Cue("Rock1",
@@ -288,10 +241,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Rock1" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //RockCrashingV3
             soundManager.Add(new GDLibrary.Managers.Cue("RockCrashingV3",
@@ -299,10 +248,6 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "RockCrashingV3" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
 
             //Steps
             soundManager.Add(new GDLibrary.Managers.Cue("Steps",
@@ -310,18 +255,14 @@ namespace GDApp
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Steps" };
-
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay, parameters));
-
             //Swing
             soundManager.Add(new GDLibrary.Managers.Cue("Swing",
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Swing"),
                 SoundCategoryType.Alarm, new Vector3(1, 0, 0), false));
 
 
-            object[] parameters = { "Swing" };
+            object[] parameters = { "MineWhispers" , "Swing" , "Breathing2" , "Droplet" , "Droplet2" , "ElevatorOpening" , "FlashlightFlickOff" ,
+            "FlashlightFlickOn" , "GearPickup" , "Heartbeat" , "Heartbeat2" , "InventoryMap" , "Motors" , "Rock1" , "RockCrashingV3" , "Steps" , "Swing"};
 
             EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                 EventActionType.OnPlay, parameters));
