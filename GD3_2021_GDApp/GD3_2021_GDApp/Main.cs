@@ -357,12 +357,47 @@ namespace GDApp
             InitializeElevator(activeScene);
             //InitializeModels(activeScene);
             InitializeTunnels(activeScene);
+            InitializeHub(activeScene);
 
             sceneManager.Add(activeScene);
             sceneManager.LoadScene("level 1");
         }
 
         private void InitializeTunnels(Scene level)
+        {
+            var material = new BasicMaterial("model material");
+            material.Texture = Content.Load<Texture2D>("Assets/Demo/Textures/checkerboard");
+            material.Shader = new BasicShader(Application.Content);
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            archetypalTunnel.IsStatic = false;
+            var renderer = new ModelRenderer();
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(0f, 0f, 60f);
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            archetypalTunnelTurn.IsStatic = false;
+            //var renderer = new ModelRenderer();
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnelTurn.Transform.Translate(0f, 0f, 60f);
+
+            level.Add(archetypalTunnel);
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeHub(Scene level)
         {
             var material = new BasicMaterial("model material");
             material.Texture = Content.Load<Texture2D>("Assets/Demo/Textures/checkerboard");
