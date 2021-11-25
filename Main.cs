@@ -358,9 +358,34 @@ namespace GDApp
             //InitializeModels(activeScene);
             InitializeTunnels(activeScene);
             InitializeHub(activeScene);
+            InitializeTurns(activeScene);
 
             sceneManager.Add(activeScene);
             sceneManager.LoadScene("level 1");
+        }
+
+        private void InitializeTurns(Scene level)
+        {
+            var material = new BasicMaterial("model material");
+            material.Texture = Content.Load<Texture2D>("Assets/Demo/Textures/checkerboard");
+            material.Shader = new BasicShader(Application.Content);
+
+
+            //tunnel_turn
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            archetypalTunnelTurn.IsStatic = false;
+            var renderer = new ModelRenderer();
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 90f);
+            archetypalTunnelTurn.Transform.Translate(-21.5f, 0.3f, 50f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
         }
 
         private void InitializeTunnels(Scene level)
@@ -380,24 +405,27 @@ namespace GDApp
             renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
 
             archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(0f, 0f, 60f);
+            archetypalTunnel.Transform.Translate(5f, 0f, 55f);
+            archetypalTunnel.Transform.Scale(1f, 3f, 1f);
 
-            //tunnel_turn
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            archetypalTunnelTurn.IsStatic = false;
+            renderer.Material = material;
+            /*
+            //Tunnel_Elevate
+            var archetypalTunnelElevate = new GameObject("tunnel_elevate", GameObjectType.Architecture);
+            archetypalTunnelElevate.IsStatic = false;
             //var renderer = new ModelRenderer();
             renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
+            archetypalTunnelElevate.AddComponent(renderer);
 
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+            archetypalTunnelElevate.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/elevation_ramps");
 
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 90f);
-            archetypalTunnelTurn.Transform.Translate(-21.5f, 0.3f, 50f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
+            */
             level.Add(archetypalTunnel);
-            level.Add(archetypalTunnelTurn);
+            //level.Add(archetypalTunnelElevate);
+
+
+            //archetypalTunnelElevate.Transform.Translate(0f, 0f, 0f);
         }
 
         private void InitializeHub(Scene level)
