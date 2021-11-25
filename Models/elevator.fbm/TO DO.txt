@@ -1,0 +1,15 @@
+
+https://community.monogame.net/t/packing-models-with-textures/11794
+
+
+
+https://en.wikipedia.org/wiki/Power_of_two
+
+
+
+dxt compression requires width and height must be powers of two in reach graphics profile
+
+
+
+NEED TO MAKE EACH PIC DIMENSIONS POWERS OF 2
+
