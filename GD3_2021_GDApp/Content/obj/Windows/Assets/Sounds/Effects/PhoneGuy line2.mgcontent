@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/PhoneGuy line2.mp3</SourceFile>
+  <SourceTime>2021-12-02T16:00:20.8866128+00:00</SourceTime>
+  <DestFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Assets/Sounds/Effects/PhoneGuy line2.xnb</DestFile>
+  <DestTime>2021-12-02T16:03:21.0093806+00:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2020-08-10T17:17:54+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2020-08-10T17:17:54+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Assets/Sounds/Effects/PhoneGuy line2.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

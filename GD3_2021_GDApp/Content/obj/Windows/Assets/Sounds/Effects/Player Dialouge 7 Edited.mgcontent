@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/Assets/Sounds/Effects/Player Dialouge 7 Edited.mp3</SourceFile>
+  <SourceTime>2021-12-02T16:00:13.4203347+00:00</SourceTime>
+  <DestFile>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Assets/Sounds/Effects/Player Dialouge 7 Edited.xnb</DestFile>
+  <DestTime>2021-12-02T16:03:27.6299467+00:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2020-08-10T17:17:54+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2020-08-10T17:17:54+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Berk/OneDrive - Dundalk Institute of Technology/Year 3/3D Games/GD_2021_GCA-Sounds/GD3_2021_GDApp/GD3_2021_GDApp/Content/bin/Windows/Assets/Sounds/Effects/Player Dialouge 7 Edited.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>
