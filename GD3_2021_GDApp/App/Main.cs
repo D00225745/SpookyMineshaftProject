@@ -459,6 +459,54 @@ namespace GDApp
             var soundEffect16 =
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Swing");
 
+            var dialoguePlayer =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 1 Edited");
+
+            var dialoguePlayer1 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 2 Edited");
+
+            var dialoguePlayer2 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 3 Edited");
+
+            var dialoguePlayer3 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 4 Edited");
+
+            var dialoguePlayer4 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 5 Edited");
+
+            var dialoguePlayer5 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 6 Edited");
+
+            var dialoguePlayer6 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 7 Edited");
+
+            var dialoguePlayer7 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 8 Edited");
+
+            var dialoguePhoneguy =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line1");
+
+            var dialoguePhoneguy1 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line2");
+
+            var dialoguePhoneguy2 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line3");
+
+            var dialoguePhoneguy3 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line4");
+
+            var dialoguePhoneguy4 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line5");
+
+            var dialoguePhoneguy5 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line6");
+
+            var dialoguePhoneguy6 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy lineplayerdefeat");
+
+            var dialoguePhoneguy7 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy lineplayervictory");
+
             //add the new sound effect
 
             soundManager.Add(new GDLibrary.Managers.Cue(
