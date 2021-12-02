@@ -1,0 +1,154 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\Tests_GD3_2021_GDLibrary\\Tests_GD3_2021_GDLibrary.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj",
+        "projectName": "GDApp",
+        "projectPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj",
+        "packagesPath": "C:\\Users\\Berk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Berk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MonoGame.Content.Builder.Task": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "MonoGame.Framework.WindowsDX": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\Tests_GD3_2021_GDLibrary\\Tests_GD3_2021_GDLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\Tests_GD3_2021_GDLibrary\\Tests_GD3_2021_GDLibrary.csproj",
+        "projectName": "Tests_GD3_2021_GDLibrary",
+        "projectPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\Tests_GD3_2021_GDLibrary\\Tests_GD3_2021_GDLibrary.csproj",
+        "packagesPath": "C:\\Users\\Berk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\Tests_GD3_2021_GDLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Berk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj": {
+                "projectPath": "C:\\Users\\Berk\\OneDrive - Dundalk Institute of Technology\\Year 3\\3D Games\\GD_2021_GCA-Sounds\\GD3_2021_GDApp\\GD3_2021_GDApp\\GD3_2021_GDApp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.9.4, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.17.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

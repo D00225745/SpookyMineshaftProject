@@ -129,14 +129,14 @@ namespace GDApp
             //this predicate lets us say ignore all the other collidable objects except interactables and consumables
             Predicate<GameObject> collisionPredicate =
                 (collidableObject) =>
-            {
-                if (collidableObject != null)
-                    return collidableObject.GameObjectType
-                    == GameObjectType.Interactable
-                    || collidableObject.GameObjectType == GameObjectType.Consumable;
+                {
+                    if (collidableObject != null)
+                        return collidableObject.GameObjectType
+                        == GameObjectType.Interactable
+                        || collidableObject.GameObjectType == GameObjectType.Consumable;
 
-                return false;
-            };
+                    return false;
+                };
             pickingManager = new PickingManager(this, 2, 100, collisionPredicate);
 
             //initialize global application data
@@ -254,7 +254,56 @@ namespace GDApp
 
             if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
             {
-                object[] parameters = { "smokealarm" };
+                object[] parameters = { "MineWhispers" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.S))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.D))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.A))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F))
+            {
+                object[] parameters = { "FlashlightFlickOn" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
+            {
+                object[] parameters = { "Breathing2" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
+            {
+                object[] parameters = { "Heartbeat" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
@@ -363,15 +412,169 @@ namespace GDApp
         private void LoadSounds()
         {
             var soundEffect =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/smokealarm1");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/MineWhispers");
+
+            var soundEffect1 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Steps");
+
+            var soundEffect2 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Breathing2");
+
+            var soundEffect3 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Droplet");
+
+            var soundEffect4 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Droplet2");
+
+            var soundEffect5 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/ElevatorOpening");
+
+            var soundEffect7 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/FlashlightFlickOn");
+
+            var soundEffect8 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/GearPickup");
+
+            var soundEffect9 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Heartbeat");
+
+            var soundEffect10 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Heartbeat2");
+
+            var soundEffect11 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/InventoryMap-Menu");
+
+            var soundEffect12 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/MenuClick");
+
+            var soundEffect13 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Motors");
+
+            var soundEffect14 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Rock1");
+
+            var soundEffect15 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/RockCrashingV3");
+
+            var soundEffect16 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Swing");
 
             //add the new sound effect
+
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "smokealarm",
+                "MineWhispers",
                 soundEffect,
+                SoundCategoryType.BackgroundMusic,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Steps",
+                soundEffect1,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Breathing2",
+                soundEffect2,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Droplet",
+                soundEffect3,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Droplet2",
+                soundEffect4,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "ELevatorOpening",
+                soundEffect5,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "FlashlightFlickOn",
+                soundEffect7,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "GearPickup",
+                soundEffect8,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Heartbeat",
+                soundEffect9,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Heartbeat2",
+                soundEffect10,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "InventoryMap-Menu",
+                soundEffect11,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "MenuClick",
+                soundEffect12,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Motors",
+                soundEffect13,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Rock1",
+                soundEffect14,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "RockCrashingV3",
+                soundEffect15,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Swing",
+                soundEffect16,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+
+
         }
 
         /// <summary>
