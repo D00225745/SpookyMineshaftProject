@@ -94,7 +94,7 @@ namespace GDApp
             _spriteBatch = new SpriteBatch(GraphicsDevice); //19.11.21
 
             //data, input, scene manager
-            InitializeEngine("Spooky Mineshaft", 1920, 1080);
+            InitializeEngine("The Horton Mine Haunting", 1920, 1080);
 
             //load structures that store assets (e.g. textures, sounds) or archetypes (e.g. Quad game object)
             InitializeDictionaries();
@@ -141,6 +141,7 @@ namespace GDApp
         /// </summary>
         private void LoadSounds()
         {
+
             //for example...
             //soundManager.Add(new GDLibrary.Managers.Cue("smokealarm",
             //    Content.Load<SoundEffect>("Assets/Sounds/Effects/smokealarm1"),
@@ -374,7 +375,7 @@ namespace GDApp
             InitializeTunnel5(activeScene);
             InitializeTunnel6(activeScene);
             InitializeTunnel7(activeScene);
-            //InitializeTunnel8(activeScene);
+            InitializeTunnel8(activeScene);
             //InitializeTunnel9(activeScene);
             //InitializeTunnel10(activeScene);
             //InitializeTunnel11(activeScene);
@@ -650,6 +651,30 @@ namespace GDApp
             level.Add(archetypalTunnel);
         }
 
+        private void InitializeTunnel8(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material");
+            material.Texture = Content.Load<Texture2D>("Assets/Textures/Cave/Rock");
+            material.Shader = new BasicShader(Application.Content);
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            archetypalTunnel.IsStatic = false;
+            var renderer = new ModelRenderer();
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(8f, 0.28f, -30f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
 
 
         private void InitializeHub(Scene level)
@@ -899,7 +924,8 @@ namespace GDApp
 
             archetypalElevator.Transform.Rotate(-90f, 270f, 90f);
             archetypalElevator.Transform.Translate(0, 10, -20);
-            archetypalElevator.Transform.Scale(0.1f, 0.1f, 0.1f);
+            //archetypalElevator.Transform.Scale(0.5f, 0.5f, 0.5f);
+            archetypalElevator.Transform.SetScale(0.5f, 0.5f, 0.5f);
             level.Add(archetypalElevator);
 
             //var count = 0;
