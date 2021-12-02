@@ -109,3 +109,35 @@ C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021
 C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\obj\Debug\netcoreapp3.1\GDApp.dll
 C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\obj\Debug\netcoreapp3.1\GDApp.pdb
 C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\obj\Debug\netcoreapp3.1\GD3_2021_GDApp.genruntimeconfig.cache
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line1.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line1.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line2.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line2.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line3.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line3.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line4.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line4.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line5.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line5.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line6.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy line6.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy lineplayerdefeat.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy lineplayerdefeat.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy lineplayervictory.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\PhoneGuy lineplayervictory.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialoge 3 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialoge 3 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialoge 6 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialoge 6 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialogue 1 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialogue 1 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialogue 2 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialogue 2 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialouge 4 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialouge 4 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player DIalouge 5 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player DIalouge 5 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialouge 7 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player Dialouge 7 Edited.xnb
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player DIalouge 8 Edited.wma
+C:\Users\Berk\OneDrive - Dundalk Institute of Technology\Year 3\3D Games\GD_2021_GCA-Sounds\GD3_2021_GDApp\GD3_2021_GDApp\bin\Debug\netcoreapp3.1\Content\Assets\Sounds\Effects\Player DIalouge 8 Edited.xnb
