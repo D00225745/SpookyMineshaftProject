@@ -298,18 +298,6 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/PhoneGuy lineplayervictory.mp3
 
-#begin Assets/Sounds/Effects/Player Dialoge 3 Edited.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/Player Dialoge 3 Edited.mp3
-
-#begin Assets/Sounds/Effects/Player Dialoge 6 Edited.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/Player Dialoge 6 Edited.mp3
-
 #begin Assets/Sounds/Effects/Player Dialogue 1 Edited.mp3
 /importer:OggImporter
 /processor:SoundEffectProcessor
@@ -321,6 +309,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/Player Dialogue 2 Edited.mp3
+
+#begin Assets/Sounds/Effects/Player Dialogue 3 Edited.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Player Dialogue 3 Edited.mp3
+
+#begin Assets/Sounds/Effects/Player Dialogue 6 Edited.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Player Dialogue 6 Edited.mp3
 
 #begin Assets/Sounds/Effects/Player Dialouge 4 Edited.mp3
 /importer:OggImporter
