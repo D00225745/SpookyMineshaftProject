@@ -460,28 +460,28 @@ namespace GDApp
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Swing");
 
             var dialoguePlayer =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 1 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 1 Edited");
 
             var dialoguePlayer1 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 2 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 2 Edited");
 
             var dialoguePlayer2 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 3 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 3 Edited");
 
             var dialoguePlayer3 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 4 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 4 Edited");
 
             var dialoguePlayer4 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 5 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 5 Edited");
 
             var dialoguePlayer5 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 6 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 6 Edited");
 
             var dialoguePlayer6 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 7 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 7 Edited");
 
             var dialoguePlayer7 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerDialogue 8 Edited");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 8 Edited");
 
             var dialoguePhoneguy =
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line1");
