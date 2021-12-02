@@ -316,35 +316,35 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/Player Dialogue 3 Edited.mp3
 
+#begin Assets/Sounds/Effects/Player Dialogue 4 Edited.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Player Dialogue 4 Edited.mp3
+
+#begin Assets/Sounds/Effects/Player DIalogue 5 Edited.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Player DIalogue 5 Edited.mp3
+
 #begin Assets/Sounds/Effects/Player Dialogue 6 Edited.mp3
 /importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/Player Dialogue 6 Edited.mp3
 
-#begin Assets/Sounds/Effects/Player Dialouge 4 Edited.mp3
+#begin Assets/Sounds/Effects/Player Dialogue 7 Edited.mp3
 /importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Assets/Sounds/Effects/Player Dialouge 4 Edited.mp3
+/build:Assets/Sounds/Effects/Player Dialogue 7 Edited.mp3
 
-#begin Assets/Sounds/Effects/Player DIalouge 5 Edited.mp3
+#begin Assets/Sounds/Effects/Player DIalogue 8 Edited.mp3
 /importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Assets/Sounds/Effects/Player DIalouge 5 Edited.mp3
-
-#begin Assets/Sounds/Effects/Player Dialouge 7 Edited.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/Player Dialouge 7 Edited.mp3
-
-#begin Assets/Sounds/Effects/Player DIalouge 8 Edited.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/Player DIalouge 8 Edited.mp3
+/build:Assets/Sounds/Effects/Player DIalogue 8 Edited.mp3
 
 #begin Assets/Sounds/Effects/Rock1.mp3
 /importer:OggImporter
