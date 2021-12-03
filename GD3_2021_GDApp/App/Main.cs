@@ -621,8 +621,119 @@ namespace GDApp
                 new Vector3(1, 0, 0),
                 false));
 
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy line1",
+                dialoguePhoneguy,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
 
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy line2",
+                dialoguePhoneguy1,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
 
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy line3",
+                dialoguePhoneguy2,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy line4",
+                dialoguePhoneguy3,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy line5",
+                dialoguePhoneguy4,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy line6",
+                dialoguePhoneguy5,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy lineplayerdefeat",
+                dialoguePhoneguy6,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PhoneGuy lineplayervictory",
+                dialoguePhoneguy7,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 1 Edited",
+                dialoguePlayer,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 2 Edited",
+                dialoguePlayer1,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 3 Edited",
+                dialoguePlayer2,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 4 Edited",
+                dialoguePlayer3,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 5 Edited",
+                dialoguePlayer4,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 6 Edited",
+                dialoguePlayer5,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 7 Edited",
+                dialoguePlayer6,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Player Dialogue 8 Edited",
+                dialoguePlayer7,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            
         }
 
         /// <summary>
