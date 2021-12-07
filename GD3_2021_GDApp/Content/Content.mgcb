@@ -208,6 +208,54 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/FlashlightFlickOn.mp3
 
+#begin Assets/Sounds/Effects/Foreman line1.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman line1.mp3
+
+#begin Assets/Sounds/Effects/Foreman line2.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman line2.mp3
+
+#begin Assets/Sounds/Effects/Foreman line3.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman line3.mp3
+
+#begin Assets/Sounds/Effects/Foreman line4.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman line4.mp3
+
+#begin Assets/Sounds/Effects/Foreman line5.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman line5.mp3
+
+#begin Assets/Sounds/Effects/Foreman line6.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman line6.mp3
+
+#begin Assets/Sounds/Effects/Foreman lineplayerdefeat.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman lineplayerdefeat.mp3
+
+#begin Assets/Sounds/Effects/Foreman lineplayervictory.mp3
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Foreman lineplayervictory.mp3
+
 #begin Assets/Sounds/Effects/GearPickup.mp3
 /importer:OggImporter
 /processor:SoundEffectProcessor
@@ -249,54 +297,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/Motors.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy line1.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy line1.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy line2.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy line2.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy line3.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy line3.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy line4.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy line4.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy line5.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy line5.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy line6.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy line6.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy lineplayerdefeat.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy lineplayerdefeat.mp3
-
-#begin Assets/Sounds/Effects/PhoneGuy lineplayervictory.mp3
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/Effects/PhoneGuy lineplayervictory.mp3
 
 #begin Assets/Sounds/Effects/Player Dialogue 1 Edited.mp3
 /importer:OggImporter

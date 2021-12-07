@@ -483,29 +483,29 @@ namespace GDApp
             var dialoguePlayer7 =
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Player Dialogue 8 Edited");
 
-            var dialoguePhoneguy =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line1");
+            var dialogueForeman =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman line1");
 
-            var dialoguePhoneguy1 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line2");
+            var dialogueForeman1 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman line2");
 
-            var dialoguePhoneguy2 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line3");
+            var dialogueForeman2 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman line3");
 
-            var dialoguePhoneguy3 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line4");
+            var dialogueForeman3 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman line4");
 
-            var dialoguePhoneguy4 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line5");
+            var dialogueForeman4 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman line5");
 
-            var dialoguePhoneguy5 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy line6");
+            var dialogueForeman5 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman line6");
 
-            var dialoguePhoneguy6 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy lineplayerdefeat");
+            var dialogueForeman6 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman lineplayerdefeat");
 
-            var dialoguePhoneguy7 =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/PhoneGuy lineplayervictory");
+            var dialogueForeman7 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman lineplayervictory");
 
             //add the new sound effect
 
@@ -622,57 +622,57 @@ namespace GDApp
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy line1",
-                dialoguePhoneguy,
+                "Foreman line1",
+                dialogueForeman,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy line2",
-                dialoguePhoneguy1,
+                "Foreman line2",
+                dialogueForeman1,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy line3",
-                dialoguePhoneguy2,
+                "Foreman line3",
+                dialogueForeman2,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy line4",
-                dialoguePhoneguy3,
+                "Foreman line4",
+                dialogueForeman3,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy line5",
-                dialoguePhoneguy4,
+                "Foreman line5",
+                dialogueForeman4,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy line6",
-                dialoguePhoneguy5,
+                "Foreman line6",
+                dialogueForeman5,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy lineplayerdefeat",
-                dialoguePhoneguy6,
+                "Foreman lineplayerdefeat",
+                dialogueForeman6,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "PhoneGuy lineplayervictory",
-                dialoguePhoneguy7,
+                "Foreman lineplayervictory",
+                dialogueForeman7,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
