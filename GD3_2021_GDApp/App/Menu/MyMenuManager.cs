@@ -34,8 +34,8 @@ namespace GDApp
                     EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                         EventActionType.OnPlay2D, parameters2));
 
-                    break;
 
+                    break;
 
                 case AppData.MENU_CONTROLS_BTN_NAME:
                     SetActiveScene(AppData.MENU_CONTROLS_NAME);

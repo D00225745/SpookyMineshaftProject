@@ -55,6 +55,7 @@ namespace GDApp
         /// </summary>
         private SoundManager soundManager;
 
+        private MyStateManager stateManager;
         private PickingManager pickingManager;
 
         /// <summary>
@@ -125,18 +126,21 @@ namespace GDApp
             //add support for playing sounds
             soundManager = new SoundManager(this);
 
+            //this will check win/lose logic
+            stateManager = new MyStateManager(this);
+
             //picking support using physics engine
             //this predicate lets us say ignore all the other collidable objects except interactables and consumables
             Predicate<GameObject> collisionPredicate =
                 (collidableObject) =>
-                {
-                    if (collidableObject != null)
-                        return collidableObject.GameObjectType
-                        == GameObjectType.Interactable
-                        || collidableObject.GameObjectType == GameObjectType.Consumable;
+            {
+                if (collidableObject != null)
+                    return collidableObject.GameObjectType
+                    == GameObjectType.Interactable
+                    || collidableObject.GameObjectType == GameObjectType.Consumable;
 
-                    return false;
-                };
+                return false;
+            };
             pickingManager = new PickingManager(this, 2, 100, collisionPredicate);
 
             //initialize global application data
@@ -146,6 +150,7 @@ namespace GDApp
             Application.GraphicsDeviceManager = _graphics;
             Application.SceneManager = sceneManager;
             Application.PhysicsManager = physicsManager;
+            Application.StateManager = stateManager;
 
             //instanciate render manager to render all drawn game objects using preferred renderer (e.g. forward, backward)
             renderManager = new RenderManager(this, new ForwardRenderer(), false, true);
@@ -192,6 +197,9 @@ namespace GDApp
 
             //add sound
             Components.Add(soundManager);
+
+            //add state
+            Components.Add(stateManager);
         }
 
         /// <summary>
@@ -247,18 +255,18 @@ namespace GDApp
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                           EventActionType.OnPause));
 
- //*!*          //Stops the Minewhispers and other included sound from playing during the pause menu
+                //*!*          //Stops the Minewhispers and other included sound from playing during the pause menu
                 object[] parameters = { "MineWhispers" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnStop, parameters));
 
                 object[] parameters1 = { "Breathing2" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters1));
+                    EventActionType.OnStop, parameters1));
 
                 object[] parameters2 = { "Heartbeat" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters2));
+                    EventActionType.OnStop, parameters2));
             }
             else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.O))
             {
@@ -300,8 +308,6 @@ namespace GDApp
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
-
-
 
             base.Update(gameTime);
         }
@@ -354,8 +360,7 @@ namespace GDApp
             InitializeDebugUI(true, true);
 
             //to show the menu we must start paused for everything else!
-            EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
-                        EventActionType.OnPause));
+            EventDispatcher.Raise(new EventData(EventCategoryType.Menu, EventActionType.OnPause));
 
             base.Initialize();
         }
@@ -502,8 +507,8 @@ namespace GDApp
             var dialogueForeman7 =
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman lineplayervictory");
 
-            //add the new sound effect
 
+            //add the new sound effect
             soundManager.Add(new GDLibrary.Managers.Cue(
                 "MineWhispers",
                 soundEffect,
@@ -727,8 +732,6 @@ namespace GDApp
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
-
-            
         }
 
         /// <summary>
@@ -761,6 +764,12 @@ namespace GDApp
             textureDictionary.Add("controlsmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/controlsmenu"));
             textureDictionary.Add("exitmenuwithtrans", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/exitmenuwithtrans"));
             textureDictionary.Add("genericbtn", Content.Load<Texture2D>("Assets/Textures/UI/Controls/genericbtn"));
+
+            //reticule
+            textureDictionary.Add("reticuleOpen",
+      Content.Load<Texture2D>("Assets/Textures/UI/Controls/reticuleOpen"));
+            textureDictionary.Add("reticuleDefault",
+          Content.Load<Texture2D>("Assets/Textures/UI/Controls/reticuleDefault"));
         }
 
         /// <summary>
@@ -790,6 +799,8 @@ namespace GDApp
             InitializeCameras(activeScene);
 
             InitializeSkybox(activeScene, worldScale);
+
+            //remove because now we are interested only in collidable things!
             //InitializeCubes(activeScene);
             //InitializeModels(activeScene);
 
@@ -865,7 +876,8 @@ namespace GDApp
                 Vector2.Zero);
 
             //demo button color change
-            playBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Orange, Color.White));
+            var comp = new UIColorMouseOverBehaviour(Color.Orange, Color.White);
+            playBtn.AddComponent(comp);
 
             mainMenuUIScene.Add(playBtn);
 
@@ -977,6 +989,26 @@ namespace GDApp
 
             #endregion Add Text
 
+            var defaultTexture = textureDictionary["reticuleDefault"];
+            var alternateTexture = textureDictionary["reticuleOpen"];
+            origin = defaultTexture.GetOriginAtCenter();
+
+            var reticule = new UITextureObject("reticule",
+                     UIObjectType.Texture,
+                new Transform2D(Vector2.Zero, Vector2.One, 0),
+                0,
+                Color.White,
+                SpriteEffects.None,
+                origin,
+                defaultTexture,
+                alternateTexture,
+                new Microsoft.Xna.Framework.Rectangle(0, 0,
+                defaultTexture.Width, defaultTexture.Height));
+
+            reticule.AddComponent(new UIReticuleBehaviour());
+
+            mainGameUIScene.Add(reticule);
+
             #region Add Scene To Manager & Set Active Scene
 
             //add the ui scene to the manager
@@ -997,7 +1029,7 @@ namespace GDApp
             {
                 Components.Add(new GDLibrary.Utilities.GDDebug.PerfUtility(this,
                     _spriteBatch, fontDictionary["debug"],
-                    new Vector2(40, _graphics.PreferredBackBufferHeight - 40),
+                    new Vector2(40, _graphics.PreferredBackBufferHeight - 80),
                     Color.White));
             }
 
@@ -1077,16 +1109,18 @@ namespace GDApp
         /// <param name="level"></param>
         private void InitializeCameras(Scene level)
         {
-            #region First Person Camera
+            #region First Person Camera - Non Collidable
 
             //add camera game object
-            var camera = new GameObject("main camera", GameObjectType.Camera);
+            var camera = new GameObject(AppData.CAMERA_FIRSTPERSON_NONCOLLIDABLE_NAME, GameObjectType.Camera);
 
             //add components
             //here is where we can set a smaller viewport e.g. for split screen
             //e.g. new Viewport(0, 0, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight)
             camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
-            camera.AddComponent(new FirstPersonController(0.05f, 0.025f, 0.00009f));
+
+            //add controller to actually move the noncollidable camera
+            camera.AddComponent(new FirstPersonController(0.05f, 0.025f, new Vector2(0.006f, 0.004f)));
 
             //set initial position
             camera.Transform.SetTranslation(0, 2, 10);
@@ -1094,21 +1128,21 @@ namespace GDApp
             //add to level
             level.Add(camera);
 
-            #endregion First Person Camera
+            #endregion First Person Camera - Non Collidable
 
-            #region Curve Camera
+            #region Curve Camera - Non Collidable
 
             //add curve for camera translation
             var translationCurve = new Curve3D(CurveLoopType.Cycle);
-            translationCurve.Add(new Vector3(0, 1, 10), 0);
-            translationCurve.Add(new Vector3(0, 6, 15), 1000);
-            translationCurve.Add(new Vector3(0, 1, 20), 2000);
-            translationCurve.Add(new Vector3(0, -6, 25), 3000);
-            translationCurve.Add(new Vector3(0, 1, 30), 4000);
-            translationCurve.Add(new Vector3(0, 1, 10), 6000);
+            translationCurve.Add(new Vector3(0, 2, 10), 0);
+            translationCurve.Add(new Vector3(0, 8, 15), 1000);
+            translationCurve.Add(new Vector3(0, 8, 20), 2000);
+            translationCurve.Add(new Vector3(0, 6, 25), 3000);
+            translationCurve.Add(new Vector3(0, 4, 25), 4000);
+            translationCurve.Add(new Vector3(0, 2, 10), 6000);
 
             //add camera game object
-            var curveCamera = new GameObject("curve camera", GameObjectType.Camera);
+            var curveCamera = new GameObject(AppData.CAMERA_CURVE_NONCOLLIDABLE_NAME, GameObjectType.Camera);
 
             //add components
             curveCamera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
@@ -1118,10 +1152,40 @@ namespace GDApp
             //add to level
             level.Add(curveCamera);
 
-            #endregion Curve Camera
+            #endregion Curve Camera - Non Collidable
 
-            //set theMain camera, if we dont call this then the first camera added will be the Main
-            level.SetMainCamera("main camera");
+            #region First Person Camera - Collidable
+
+            //add camera game object
+            camera = new GameObject(AppData.CAMERA_FIRSTPERSON_COLLIDABLE_NAME, GameObjectType.Camera);
+
+            //set initial position - important to set before the collider as collider capsule feeds off this position
+            camera.Transform.SetTranslation(0, 10, 40);
+
+            //add components
+            camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
+
+            //adding a collidable surface that enables acceleration, jumping
+            //var collider = new CharacterCollider(2, 2, true, false);
+
+            var collider = new MyHeroCollider(2, 2, true, false);
+            camera.AddComponent(collider);
+            collider.AddPrimitive(new Capsule(camera.Transform.LocalTranslation,
+                Matrix.CreateRotationX(MathHelper.PiOver2), 1, 3.6f),
+                new MaterialProperties(0.2f, 0.8f, 0.7f));
+            collider.Enable(false, 2);
+
+            //add controller to actually move the collidable camera
+            camera.AddComponent(new MyCollidableFirstPersonController(12,
+                        0.5f, 0.3f, new Vector2(0.006f, 0.004f)));
+
+            //add to level
+            level.Add(camera);
+
+            #endregion First Person Camera - Collidable
+
+            //set the main camera, if we dont call this then the first camera added will be the Main
+            level.SetMainCamera(AppData.CAMERA_FIRSTPERSON_COLLIDABLE_NAME);
 
             //allows us to scale time on all game objects that based movement on Time
             // Time.Instance.TimeScale = 0.1f;
@@ -1138,7 +1202,7 @@ namespace GDApp
             InitializeCollidableCubes(level);
 
             InitializeCollidableModels(level);
-            InitializeCollidableTriangleMeshes(level);
+            //InitializeCollidableTriangleMeshes(level);
         }
 
         private void InitializeCollidableTriangleMeshes(Scene level)
@@ -1176,8 +1240,7 @@ namespace GDApp
             var shader = new BasicShader(Application.Content, false, true);
 
             //create the sphere
-            var sphereArchetype = new GameObject("sphere",
-                GameObjectType.Interactable, true);
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
 
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
@@ -1187,13 +1250,15 @@ namespace GDApp
             {
                 clone = sphereArchetype.Clone() as GameObject;
                 clone.Name = $"sphere - {i}";
+
                 clone.Transform.SetTranslation(5 + i / 10f, 5 + 4 * i, 0);
-                clone.AddComponent(new ModelRenderer(modelDictionary["sphere"],
+                clone.AddComponent(new ModelRenderer(
+                    modelDictionary["sphere"],
                     new BasicMaterial("sphere_material",
                     shader, Color.White, 1, textureDictionary["checkerboard"])));
 
                 //add Collision Surface(s)
-                collider = new Collider();
+                collider = new Collider(false, false);
                 clone.AddComponent(collider);
                 collider.AddPrimitive(new JigLibX.Geometry.Sphere(
                    sphereArchetype.Transform.LocalTranslation, 1),
@@ -1217,11 +1282,10 @@ namespace GDApp
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
             //create the ground
-            var ground = new GameObject("ground", GameObjectType.Environment, true);
+            var ground = new GameObject("ground", GameObjectType.Ground, true);
             ground.Transform.SetRotation(-90, 0, 0);
             ground.Transform.SetScale(worldScale, worldScale, 1);
             ground.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1, textureDictionary["grass"])));
-            //level.Add(ground);
 
             //add Collision Surface(s)
             collider = new Collider();
@@ -1260,11 +1324,11 @@ namespace GDApp
                     new BasicMaterial("cube_material", shader,
                     Color.White, 1, textureDictionary["crate1"])));
 
-                //add desc and value to a pickup
+                //add desc and value to a pickup used when we collect/remove/collide with it
                 clone.AddComponent(new PickupBehaviour("ammo pack", 15));
 
                 //add Collision Surface(s)
-                collider = new Collider();
+                collider = new MyPlayerCollider();
                 clone.AddComponent(collider);
                 collider.AddPrimitive(new Box(
                     cube.Transform.LocalTranslation,
