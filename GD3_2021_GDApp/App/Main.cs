@@ -241,22 +241,29 @@ namespace GDApp
                     EventActionType.OnHealthDelta, parameters));
             }
 
+            //Input key to trigger the pause menu
             if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.P))
             {
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                           EventActionType.OnPause));
+
+ //*!*          //Stops the Minewhispers and other included sound from playing during the pause menu
+                object[] parameters = { "MineWhispers" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+
+                object[] parameters1 = { "Breathing2" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters1));
+
+                object[] parameters2 = { "Heartbeat" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters2));
             }
             else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.O))
             {
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                     EventActionType.OnPlay));
-            }
-
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-            {
-                object[] parameters = { "MineWhispers" };
-                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters));
             }
 
             if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.W))
@@ -294,19 +301,7 @@ namespace GDApp
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-            {
-                object[] parameters = { "Breathing2" };
-                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters));
-            }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-            {
-                object[] parameters = { "Heartbeat" };
-                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters));
-            }
 
             base.Update(gameTime);
         }
@@ -514,7 +509,7 @@ namespace GDApp
                 soundEffect,
                 SoundCategoryType.BackgroundMusic,
                 new Vector3(1, 0, 0),
-                false));
+                true));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
                 "Steps",
@@ -528,7 +523,7 @@ namespace GDApp
                 soundEffect2,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
-                false));
+                true));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
                 "Droplet",
@@ -570,7 +565,7 @@ namespace GDApp
                 soundEffect9,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
-                false));
+                true));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
                 "Heartbeat2",

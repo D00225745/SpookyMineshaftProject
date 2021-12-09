@@ -19,7 +19,23 @@ namespace GDApp
             {
                 case AppData.MENU_PLAY_BTN_NAME:
                     EventDispatcher.Raise(new EventData(EventCategoryType.Menu, EventActionType.OnPlay));
+
+                    //Makes the MineWhisper sound play when Menu opens/(plays)
+                    object[] parameters = { "MineWhispers" };
+                    EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                        EventActionType.OnPlay2D, parameters));
+
+                    //Makes the Set sound play when Menu opens/(plays)
+                    object[] parameters1 = { "Breathing2" };
+                    EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                        EventActionType.OnPlay2D, parameters1));
+
+                    object[] parameters2 = { "Heartbeat" };
+                    EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                        EventActionType.OnPlay2D, parameters2));
+
                     break;
+
 
                 case AppData.MENU_CONTROLS_BTN_NAME:
                     SetActiveScene(AppData.MENU_CONTROLS_NAME);
