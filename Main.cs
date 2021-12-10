@@ -55,6 +55,7 @@ namespace GDApp
         /// </summary>
         private SoundManager soundManager;
 
+        private MyStateManager stateManager;
         private PickingManager pickingManager;
 
         /// <summary>
@@ -125,17 +126,22 @@ namespace GDApp
             //add support for playing sounds
             soundManager = new SoundManager(this);
 
+            //this will check win/lose logic
+            stateManager = new MyStateManager(this);
+
             //picking support using physics engine
             //this predicate lets us say ignore all the other collidable objects except interactables and consumables
-            Predicate<GameObject> collisionPredicate = (collidableObject) =>
+            Predicate<GameObject> collisionPredicate =
+                (collidableObject) =>
             {
                 if (collidableObject != null)
-                    return collidableObject.GameObjectType == GameObjectType.Interactable
+                    return collidableObject.GameObjectType
+                    == GameObjectType.Interactable
                     || collidableObject.GameObjectType == GameObjectType.Consumable;
 
                 return false;
             };
-            pickingManager = new PickingManager(this, 0, 100, collisionPredicate);
+            pickingManager = new PickingManager(this, 2, 100, collisionPredicate);
 
             //initialize global application data
             Application.Main = this;
@@ -144,6 +150,7 @@ namespace GDApp
             Application.GraphicsDeviceManager = _graphics;
             Application.SceneManager = sceneManager;
             Application.PhysicsManager = physicsManager;
+            Application.StateManager = stateManager;
 
             //instanciate render manager to render all drawn game objects using preferred renderer (e.g. forward, backward)
             renderManager = new RenderManager(this, new ForwardRenderer(), false, true);
@@ -190,6 +197,9 @@ namespace GDApp
 
             //add sound
             Components.Add(soundManager);
+
+            //add state
+            Components.Add(stateManager);
         }
 
         /// <summary>
@@ -225,17 +235,6 @@ namespace GDApp
             //    //EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
             //    //  EventActionType.OnPlay));
             //}
-            var mainGameUIScene = new UIScene("main game ui");
-
-            var hudTextureObj = new UITextureObject("HUD",
-                 UIObjectType.Texture,
-                 new Transform2D(new Vector2(0, 0),
-                 new Vector2(1, 1),
-                 MathHelper.ToRadians(0)),
-                 0, Content.Load<Texture2D>("Assets/Textures/UI/Progress/hud"));
-            //add the ui element to the scene
-            hudTextureObj.Color = Color.White;
-            mainGameUIScene.Add(hudTextureObj);
 
             if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Up))
             {
@@ -250,6 +249,20 @@ namespace GDApp
                     EventActionType.OnHealthDelta, parameters));
             }
 
+
+            var mainGameUIScene = new UIScene("main game ui");
+
+            var hudTextureObj = new UITextureObject("HUD",
+                 UIObjectType.Texture,
+                 new Transform2D(new Vector2(0, 0),
+                 new Vector2(1, 1),
+                 MathHelper.ToRadians(0)),
+                 0, Content.Load<Texture2D>("Assets/Textures/UI/Progress/hud"));
+            //add the ui element to the scene
+            hudTextureObj.Color = Color.White;
+            mainGameUIScene.Add(hudTextureObj);
+
+
             if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
@@ -261,12 +274,21 @@ namespace GDApp
                     EventActionType.OnPlay));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F1))
             {
                 object[] parameters = { "smokealarm" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F2))
+            {
+                object[] parameters = { "smokealarm" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.C))
+                Application.SceneManager.ActiveScene.CycleCameras();
 
             base.Update(gameTime);
         }
@@ -277,7 +299,7 @@ namespace GDApp
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
         }
 
@@ -319,8 +341,7 @@ namespace GDApp
             InitializeDebugUI(true, true);
 
             //to show the menu we must start paused for everything else!
-            EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
-                        EventActionType.OnPause));
+            EventDispatcher.Raise(new EventData(EventCategoryType.Menu, EventActionType.OnPause));
 
             base.Initialize();
         }
@@ -401,19 +422,24 @@ namespace GDApp
 
             //environment
             textureDictionary.Add("grass", Content.Load<Texture2D>("Assets/Textures/Foliage/Ground/grass1"));
-            textureDictionary.Add("Rock", Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
             textureDictionary.Add("crate1", Content.Load<Texture2D>("Assets/Textures/Props/Crates/crate1"));
 
             //ui
             textureDictionary.Add("ui_progress_32_8", Content.Load<Texture2D>("Assets/Textures/UI/Controls/ui_progress_32_8"));
-            textureDictionary.Add("HP_Bar_V2", Content.Load<Texture2D>("Assets/Textures/UI/Progress/HP_Bar_V2"));
+            textureDictionary.Add("progress_white", Content.Load<Texture2D>("Assets/Textures/UI/Controls/progress_white"));
 
             //menu
-            textureDictionary.Add("mainmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/Menu_Startup_Animation_01 (1)_Moment"));
+            textureDictionary.Add("mainmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/mainmenu"));
             textureDictionary.Add("audiomenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/audiomenu"));
             textureDictionary.Add("controlsmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/controlsmenu"));
             textureDictionary.Add("exitmenuwithtrans", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/exitmenuwithtrans"));
             textureDictionary.Add("genericbtn", Content.Load<Texture2D>("Assets/Textures/UI/Controls/genericbtn"));
+
+            //reticule
+            textureDictionary.Add("reticuleOpen",
+      Content.Load<Texture2D>("Assets/Textures/UI/Controls/reticuleOpen"));
+            textureDictionary.Add("reticuleDefault",
+          Content.Load<Texture2D>("Assets/Textures/UI/Controls/reticuleDefault"));
         }
 
         /// <summary>
@@ -443,6 +469,8 @@ namespace GDApp
             InitializeCameras(activeScene);
 
             InitializeSkybox(activeScene, worldScale);
+
+            //remove because now we are interested only in collidable things!
             //InitializeCubes(activeScene);
             //InitializeModels(activeScene);
 
@@ -458,14 +486,34 @@ namespace GDApp
             InitializeTunnel6(activeScene);
             InitializeTunnel7(activeScene);
             InitializeTunnel8(activeScene);
-            //InitializeTunnel9(activeScene);
-            //InitializeTunnel10(activeScene);
-            //InitializeTunnel11(activeScene);
-            //InitializeTunnel12(activeScene);
+            InitializeTunnel9(activeScene);
+            InitializeTunnel10(activeScene);
+            InitializeTunnel11(activeScene);
+            InitializeTunnel12(activeScene);
+            InitializeTunnel13(activeScene);
+            InitializeTunnel14(activeScene);
+            InitializeTunnel15(activeScene);
+            InitializeTunnel16(activeScene);
+            InitializeTunnel17(activeScene);
+            InitializeTunnel18(activeScene);
+            //InitializeTunnel19(activeScene);
+            //InitializeTunnel20(activeScene);
+            //InitializeTunnel21(activeScene);
+            //InitializeTunnel22(activeScene);
+            //InitializeTunnel23(activeScene);
+            //InitializeTunnel24(activeScene);
+            //InitializeTunnel25(activeScene);
             InitializeHub(activeScene);
             InitializeTurns(activeScene);
             InitializeTurns2(activeScene);
             InitializeTurns3(activeScene);
+            InitializeTurns4(activeScene);
+            InitializeTurns5(activeScene);
+            InitializeTurns6(activeScene);
+            InitializeTurns7(activeScene);
+            InitializeTurns8(activeScene);
+            InitializeTurns9(activeScene);
+            InitializeTurns10(activeScene);
 
             InitializeCollidables(activeScene, worldScale);
 
@@ -486,7 +534,7 @@ namespace GDApp
             archetypalTunnelTurn.AddComponent(renderer);
             renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
 
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 90f);
+            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 0f);
             archetypalTunnelTurn.Transform.Translate(-21.5f, 0.3f, 50f);
             archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
 
@@ -506,7 +554,7 @@ namespace GDApp
             archetypalTunnelTurn.AddComponent(renderer);
             renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
 
-            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 90f);
+            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
             archetypalTunnelTurn.Transform.Translate(102f, 0.3f, 61.5f);
             archetypalTunnelTurn.Transform.Scale(1f, 1f, 1.3f);
 
@@ -526,8 +574,148 @@ namespace GDApp
             archetypalTunnelTurn.AddComponent(renderer);
             renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
 
-            archetypalTunnelTurn.Transform.Rotate(90f, 0f, 90f);
-            archetypalTunnelTurn.Transform.Translate(114f, 10f, 10f);
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(114f, 0.3f, 10f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns4(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(13f, 0.28f, -185f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns5(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-46f, 0.28f, -201f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns6(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-38.3f, 0.28f, -229f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns7(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-5f, 0.28f, -185f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns8(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-5f, 0.28f, -185f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns9(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-5f, 0.28f, -185f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns10(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-5f, 0.28f, -185f);
             archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
 
             level.Add(archetypalTunnelTurn);
@@ -561,7 +749,7 @@ namespace GDApp
             var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
 
             var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-           // archetypalTunnel.IsStatic = false;
+            // archetypalTunnel.IsStatic = false;
             var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
             renderer.Material = material;
             archetypalTunnel.AddComponent(renderer);
@@ -580,7 +768,7 @@ namespace GDApp
         {
             //tunnel
             var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-            
+
             //material.Texture = Content.Load<Texture2D>("Assets/Textures/Cave/Rock");
             //material.Shader = new BasicShader(Application.Content);
 
@@ -703,7 +891,7 @@ namespace GDApp
             renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
 
             archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(8f, 0.28f, -30f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -77f);
             archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
 
             renderer.Material = material;
@@ -711,6 +899,225 @@ namespace GDApp
             level.Add(archetypalTunnel);
         }
 
+        private void InitializeTunnel9(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -93f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel10(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -109f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel11(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -125f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel12(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -141f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+        //Right side of split tunnel (on elevator side)
+        private void InitializeTunnel13(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -77f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel14(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -93f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel15(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -109f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel16(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -125f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel17(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -141f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel18(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -157f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
 
         private void InitializeHub(Scene level)
         {
@@ -725,6 +1132,7 @@ namespace GDApp
             renderer.Model = Content.Load<Model>("Assets/Models/hub_improved");
 
             archetypalCave.Transform.Rotate(-90f, 90f, 0f);
+            archetypalCave.Transform.Translate(1.2f, 1f, 1.3f);
 
             level.Add(archetypalCave);
         }
@@ -745,22 +1153,14 @@ namespace GDApp
             archetypalElevator.Transform.Translate(49.3f, 24.5f, -23f);
             archetypalElevator.Transform.SetScale(1.3f, 1.5f, 1.3f);
             level.Add(archetypalElevator);
-
-            //var count = 0;
-            //for (var i = -8; i <= 8; i += 2)
-            //{
-            //    var clone = archetypalSphere.Clone() as GameObject;
-            //    clone.Name = $"{clone.Name} - {count++}";
-            //    clone.Transform.SetTranslation(-5, i, 0);
-            //    level.Add(clone);
-            //}
         }
 
 
-        /// <summary>
-        /// Adds menu and UI elements
-        /// </summary>
-        private void InitializeUI()
+
+            /// <summary>
+            /// Adds menu and UI elements
+            /// </summary>
+            private void InitializeUI()
         {
             InitializeGameMenu();
             InitializeGameUI();
@@ -785,13 +1185,14 @@ namespace GDApp
             //main background
             var texture = textureDictionary["mainmenu"];
             //get how much we need to scale background to fit screen, then downsizes a little so we can see game behind background
-            var scale = _graphics.GetScaleForTexture(texture, new Vector2(1f, 1f));
+            var scale = _graphics.GetScaleForTexture(texture,
+                new Vector2(0.8f, 0.8f));
 
             menuObject = new UITextureObject("main background",
                 UIObjectType.Texture,
                 new Transform2D(Screen.Instance.ScreenCentre, scale, 0), //sets position as center of screen
                 0,
-                new Color(500, 500, 500, 400),
+                new Color(255, 255, 255, 200),
                 texture.GetOriginAtCenter(), //if we want to position image on screen center then we need to set origin as texture center
                 texture);
 
@@ -802,13 +1203,13 @@ namespace GDApp
 
             var btnTexture = textureDictionary["genericbtn"];
             var sourceRectangle
-                = new Microsoft.Xna.Framework.Rectangle(2, 2,
+                = new Microsoft.Xna.Framework.Rectangle(0, 0,
                 btnTexture.Width, btnTexture.Height);
             var origin = new Vector2(btnTexture.Width / 2.0f, btnTexture.Height / 2.0f);
 
             var playBtn = new UIButtonObject(AppData.MENU_PLAY_BTN_NAME, UIObjectType.Button,
                 new Transform2D(AppData.MENU_PLAY_BTN_POSITION,
-                1f * Vector2.One, 0.58f),
+                0.5f * Vector2.One, 0),
                 0.1f,
                 Color.White,
                 SpriteEffects.None,
@@ -822,7 +1223,8 @@ namespace GDApp
                 Vector2.Zero);
 
             //demo button color change
-            playBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Green, Color.White));
+            var comp = new UIColorMouseOverBehaviour(Color.Orange, Color.White);
+            playBtn.AddComponent(comp);
 
             mainMenuUIScene.Add(playBtn);
 
@@ -831,7 +1233,7 @@ namespace GDApp
             //same button texture so we can re-use texture, sourceRectangle and origin
 
             var controlsBtn = new UIButtonObject(AppData.MENU_CONTROLS_BTN_NAME, UIObjectType.Button,
-                new Transform2D(AppData.MENU_CONTROLS_BTN_POSITION, 1f * Vector2.One, -0.1f),
+                new Transform2D(AppData.MENU_CONTROLS_BTN_POSITION, 0.5f * Vector2.One, 0),
                 0.1f,
                 Color.White,
                 origin,
@@ -851,7 +1253,7 @@ namespace GDApp
 
             //use a simple/smaller version of the UIButtonObject constructor
             var exitBtn = new UIButtonObject(AppData.MENU_EXIT_BTN_NAME, UIObjectType.Button,
-                new Transform2D(AppData.MENU_EXIT_BTN_POSITION, 1f * Vector2.One, -0.5f),
+                new Transform2D(AppData.MENU_EXIT_BTN_POSITION, 0.5f * Vector2.One, 0),
                 0.1f,
                 Color.Orange,
                 origin,
@@ -861,7 +1263,7 @@ namespace GDApp
                 Color.Black);
 
             //demo button color change
-            exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Red, Color.White));
+            exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Orange, Color.White));
 
             mainMenuUIScene.Add(exitBtn);
 
@@ -889,15 +1291,16 @@ namespace GDApp
             var mainGameUIScene = new UIScene(AppData.UI_SCENE_MAIN_NAME);
 
             #region Add Health Bar
+
             //add a health bar in the centre of the game window
-            var texture = textureDictionary["HP_Bar_V2"];
-            var position = new Vector2(_graphics.PreferredBackBufferWidth / 1.005f, 1020);
+            var texture = textureDictionary["progress_white"];
+            var position = new Vector2(_graphics.PreferredBackBufferWidth / 2, 50);
             var origin = new Vector2(texture.Width / 2, texture.Height / 2);
 
             //create the UI element
             var healthTextureObj = new UITextureObject("health",
                 UIObjectType.Texture,
-                new Transform2D(position, new Vector2(1.40f, 0.50f), 0),
+                new Transform2D(position, new Vector2(2, 0.5f), 0),
                 0,
                 Color.White,
                 origin,
@@ -913,19 +1316,25 @@ namespace GDApp
             mainGameUIScene.Add(healthTextureObj);
 
             #endregion Add Health Bar
+            /*
+            //create the scene
+            var mainGameUIScene = new UIScene(AppData.UI_SCENE_MAIN_NAME);
 
-            var hudTextureObj = new UITextureObject("HUD",
-                 UIObjectType.Texture,
-                 new Transform2D(new Vector2(0, 0),
-                 new Vector2(1, 1),
-                 MathHelper.ToRadians(0)),
-                 0, Content.Load<Texture2D>("Assets/Textures/UI/Controls/UI_Demo_2_Transparent (1)"));
-            //add the ui element to the scene
-            hudTextureObj.Color = Color.White;
-            mainGameUIScene.Add(hudTextureObj);
+            #region Add Health Bar
+            //add a health bar in the centre of the game window
+            var texture = textureDictionary["HP_Bar_V2"];
+            var position = new Vector2(_graphics.PreferredBackBufferWidth / 1.005f, 1020);
+            var origin = new Vector2(texture.Width / 2, texture.Height / 2);
 
-            #endregion Add Health Bar
-
+            //create the UI element
+            var healthTextureObj = new UITextureObject("health",
+                UIObjectType.Texture,
+                new Transform2D(position, new Vector2(1.40f, 0.50f), 0),
+                0,
+                Color.White,
+                origin,
+                texture);
+            */
             #region Add Text
 
             var font = fontDictionary["ui"];
@@ -944,6 +1353,27 @@ namespace GDApp
             mainGameUIScene.Add(nameTextObj);
 
             #endregion Add Text
+            /*
+            var defaultTexture = textureDictionary["reticuleDefault"];
+            var alternateTexture = textureDictionary["reticuleOpen"];
+            origin = defaultTexture.GetOriginAtCenter();
+
+            var reticule = new UITextureObject("reticule",
+                     UIObjectType.Texture,
+                new Transform2D(Vector2.Zero, Vector2.One, 0),
+                0,
+                Color.White,
+                SpriteEffects.None,
+                origin,
+                defaultTexture,
+                alternateTexture,
+                new Microsoft.Xna.Framework.Rectangle(0, 0,
+                defaultTexture.Width, defaultTexture.Height));
+
+            reticule.AddComponent(new UIReticuleBehaviour());
+
+            mainGameUIScene.Add(reticule);
+            */
 
             #region Add Scene To Manager & Set Active Scene
 
@@ -965,7 +1395,7 @@ namespace GDApp
             {
                 Components.Add(new GDLibrary.Utilities.GDDebug.PerfUtility(this,
                     _spriteBatch, fontDictionary["debug"],
-                    new Vector2(40, _graphics.PreferredBackBufferHeight - 40),
+                    new Vector2(40, _graphics.PreferredBackBufferHeight - 80),
                     Color.White));
             }
 
@@ -992,14 +1422,14 @@ namespace GDApp
             var archetypalQuad = new GameObject("quad", GameObjectType.Skybox, true);
 
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
-            
+            /*
             GameObject clone = null;
             //back
             clone = archetypalQuad.Clone() as GameObject;
-            clone.Name = "skybox_top";
+            clone.Name = "skybox_back";
             clone.Transform.Translate(0, 0, -worldScale / 2.0f);
             clone.Transform.Scale(worldScale, worldScale, 1);
-            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("Rock", shader, Color.White, 1, textureDictionary["Rock"])));
+            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("skybox_back_material", shader, Color.White, 1, textureDictionary["skybox_back"])));
             level.Add(clone);
 
             //left
@@ -1008,7 +1438,7 @@ namespace GDApp
             clone.Transform.Translate(-worldScale / 2.0f, 0, 0);
             clone.Transform.Scale(worldScale, worldScale, null);
             clone.Transform.Rotate(0, 90, 0);
-            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("Rock", shader, Color.White, 1, textureDictionary["Rock"])));
+            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("skybox_left_material", shader, Color.White, 1, textureDictionary["skybox_left"])));
             level.Add(clone);
 
             //right
@@ -1017,7 +1447,7 @@ namespace GDApp
             clone.Transform.Translate(worldScale / 2.0f, 0, 0);
             clone.Transform.Scale(worldScale, worldScale, null);
             clone.Transform.Rotate(0, -90, 0);
-            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("Rock", shader, Color.White, 1, textureDictionary["Rock"])));
+            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("skybox_right_material", shader, Color.White, 1, textureDictionary["skybox_right"])));
             level.Add(clone);
 
             //front
@@ -1026,7 +1456,7 @@ namespace GDApp
             clone.Transform.Translate(0, 0, worldScale / 2.0f);
             clone.Transform.Scale(worldScale, worldScale, null);
             clone.Transform.Rotate(0, -180, 0);
-            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("Rock", shader, Color.White, 1, textureDictionary["Rock"])));
+            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("skybox_front_material", shader, Color.White, 1, textureDictionary["skybox_front"])));
             level.Add(clone);
 
             //top
@@ -1035,9 +1465,9 @@ namespace GDApp
             clone.Transform.Translate(0, worldScale / 2.0f, 0);
             clone.Transform.Scale(worldScale, worldScale, null);
             clone.Transform.Rotate(90, -90, 0);
-            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("Rock", shader, Color.White, 1, textureDictionary["Rock"])));
+            clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("skybox_sky_material", shader, Color.White, 1, textureDictionary["skybox_sky"])));
             level.Add(clone);
-           
+        */
         }
 
         /// <summary>
@@ -1046,38 +1476,38 @@ namespace GDApp
         /// <param name="level"></param>
         private void InitializeCameras(Scene level)
         {
-            #region First Person Camera
+            #region First Person Camera - Non Collidable
 
             //add camera game object
-            var camera = new GameObject("main camera", GameObjectType.Camera);
+            var camera = new GameObject(AppData.CAMERA_FIRSTPERSON_NONCOLLIDABLE_NAME, GameObjectType.Camera);
 
             //add components
             //here is where we can set a smaller viewport e.g. for split screen
             //e.g. new Viewport(0, 0, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight)
             camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
-            camera.AddComponent(new FirstPersonController(0.05f, 0.025f, 0.00009f));
 
-            //set initial position
-            camera.Transform.SetTranslation(0, 7, 10);
+            //add controller to actually move the noncollidable camera
+            camera.AddComponent(new FirstPersonController(0.5f, 0.5f, new Vector2(0.5f, 0.4f))); //LEE CHANGED VALUES FROM 0.05f, 0.035f////////0.0012F AND 0.04        //set initial position
+            camera.Transform.SetTranslation(100, 100, 100);//10,12,10
 
             //add to level
             level.Add(camera);
 
-            #endregion First Person Camera
+            #endregion First Person Camera - Non Collidable
 
-            #region Curve Camera
+            #region Curve Camera - Non Collidable
 
             //add curve for camera translation
             var translationCurve = new Curve3D(CurveLoopType.Cycle);
-            translationCurve.Add(new Vector3(0, 1, 10), 0);
-            translationCurve.Add(new Vector3(0, 6, 15), 1000);
-            translationCurve.Add(new Vector3(0, 1, 20), 2000);
-            translationCurve.Add(new Vector3(0, -6, 25), 3000);
-            translationCurve.Add(new Vector3(0, 1, 30), 4000);
-            translationCurve.Add(new Vector3(0, 1, 10), 6000);
+            translationCurve.Add(new Vector3(0, 2, 10), 0);
+            translationCurve.Add(new Vector3(0, 8, 15), 1000);
+            translationCurve.Add(new Vector3(0, 8, 20), 2000);
+            translationCurve.Add(new Vector3(0, 6, 25), 3000);
+            translationCurve.Add(new Vector3(0, 4, 25), 4000);
+            translationCurve.Add(new Vector3(0, 2, 10), 6000);
 
             //add camera game object
-            var curveCamera = new GameObject("curve camera", GameObjectType.Camera);
+            var curveCamera = new GameObject(AppData.CAMERA_CURVE_NONCOLLIDABLE_NAME, GameObjectType.Camera);
 
             //add components
             curveCamera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
@@ -1087,10 +1517,40 @@ namespace GDApp
             //add to level
             level.Add(curveCamera);
 
-            #endregion Curve Camera
+            #endregion Curve Camera - Non Collidable
 
-            //set theMain camera, if we dont call this then the first camera added will be the Main
-            level.SetMainCamera("main camera");
+            #region First Person Camera - Collidable
+
+            //add camera game object
+            camera = new GameObject(AppData.CAMERA_FIRSTPERSON_COLLIDABLE_NAME, GameObjectType.Camera);
+
+            //set initial position - important to set before the collider as collider capsule feeds off this position
+            camera.Transform.SetTranslation(30, 10, 30);     //  , y, 
+
+            //add components
+            camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
+
+            //adding a collidable surface that enables acceleration, jumping
+            //var collider = new CharacterCollider(2, 2, true, false);
+
+            var collider = new MyHeroCollider(2, 2, true, false);
+            camera.AddComponent(collider);
+            collider.AddPrimitive(new Capsule(camera.Transform.LocalTranslation,
+                Matrix.CreateRotationX(MathHelper.PiOver2), 6, 3.6f),//1,3.6f    6 is the height of the capsule
+                new MaterialProperties(0.2f, 10f, 0.7f));//0.2f, 0.8f, 0.7f
+            collider.Enable(false, 2);
+
+            //add controller to actually move the collidable camera
+            camera.AddComponent(new MyCollidableFirstPersonController(12,
+                        0.5f, 0.3f, new Vector2(0.006f, 0.004f)));
+
+            //add to level
+            level.Add(camera);
+
+            #endregion First Person Camera - Collidable
+
+            //set the main camera, if we dont call this then the first camera added will be the Main
+            level.SetMainCamera(AppData.CAMERA_FIRSTPERSON_COLLIDABLE_NAME);
 
             //allows us to scale time on all game objects that based movement on Time
             // Time.Instance.TimeScale = 0.1f;
@@ -1107,7 +1567,7 @@ namespace GDApp
             InitializeCollidableCubes(level);
 
             InitializeCollidableModels(level);
-            InitializeCollidableTriangleMeshes(level);
+            //InitializeCollidableTriangleMeshes(level);
         }
 
         private void InitializeCollidableTriangleMeshes(Scene level)
@@ -1136,11 +1596,9 @@ namespace GDApp
             ////add To Scene Manager
             //level.Add(complexModel);
         }
-        
+
         private void InitializeCollidableModels(Scene level)
-            
         {
-            /*
             #region Reusable - You can copy and re-use this code elsewhere, if required
 
             //re-use the code on the gfx card, if we want to draw multiple objects using Clone
@@ -1157,13 +1615,15 @@ namespace GDApp
             {
                 clone = sphereArchetype.Clone() as GameObject;
                 clone.Name = $"sphere - {i}";
+
                 clone.Transform.SetTranslation(5 + i / 10f, 5 + 4 * i, 0);
-                clone.AddComponent(new ModelRenderer(modelDictionary["sphere"],
+                clone.AddComponent(new ModelRenderer(
+                    modelDictionary["sphere"],
                     new BasicMaterial("sphere_material",
                     shader, Color.White, 1, textureDictionary["checkerboard"])));
 
                 //add Collision Surface(s)
-                collider = new Collider();
+                collider = new Collider(false, false);
                 clone.AddComponent(collider);
                 collider.AddPrimitive(new JigLibX.Geometry.Sphere(
                    sphereArchetype.Transform.LocalTranslation, 1),
@@ -1173,9 +1633,7 @@ namespace GDApp
                 //add To Scene Manager
                 level.Add(clone);
             }
-            */
         }
-        
 
         private void InitializeCollidableGround(Scene level, float worldScale)
         {
@@ -1189,18 +1647,17 @@ namespace GDApp
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
             //create the ground
-            var ground = new GameObject("ground", GameObjectType.Environment, true);
+            var ground = new GameObject("ground", GameObjectType.Ground, true);
             ground.Transform.SetRotation(-90, 0, 0);
             ground.Transform.SetScale(worldScale, worldScale, 1);
-            ground.AddComponent(new MeshRenderer(mesh, new BasicMaterial("Rock", shader, Color.White, 1, textureDictionary["Rock"])));
-            //level.Add(ground);
+            ground.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1, textureDictionary["grass"])));
 
             //add Collision Surface(s)
             collider = new Collider();
             ground.AddComponent(collider);
             collider.AddPrimitive(new JigLibX.Geometry.Plane(
                 ground.Transform.Up, ground.Transform.LocalTranslation),
-                new MaterialProperties(0.8f, 0.8f, 0.7f));
+                new MaterialProperties(0.8f, -0.4f, 0.7f));
             collider.Enable(true, 1);
 
             //add To Scene Manager
@@ -1209,7 +1666,6 @@ namespace GDApp
 
         private void InitializeCollidableCubes(Scene level)
         {
-            /*
             #region Reusable - You can copy and re-use this code elsewhere, if required
 
             //re-use the code on the gfx card, if we want to draw multiple objects using Clone
@@ -1233,8 +1689,11 @@ namespace GDApp
                     new BasicMaterial("cube_material", shader,
                     Color.White, 1, textureDictionary["crate1"])));
 
+                //add desc and value to a pickup used when we collect/remove/collide with it
+                clone.AddComponent(new PickupBehaviour("ammo pack", 15));
+
                 //add Collision Surface(s)
-                collider = new Collider();
+                collider = new MyPlayerCollider();
                 clone.AddComponent(collider);
                 collider.AddPrimitive(new Box(
                     cube.Transform.LocalTranslation,
@@ -1246,9 +1705,8 @@ namespace GDApp
                 //add To Scene Manager
                 level.Add(clone);
             }
-            */
         }
-        #region Student/Group Specific Code
+
         #endregion Student/Group Specific Code
 
         /******************************* Demo (Remove For Release) *******************************/
