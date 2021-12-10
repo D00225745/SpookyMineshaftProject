@@ -274,28 +274,36 @@ namespace GDApp
                     EventActionType.OnPlay));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            /* doesn't work as intended, forever spams the breathing sound without letting it finish
+            if (Input.Keys.IsReleased(Microsoft.Xna.Framework.Input.Keys.B))
+            {
+                object[] parameters = { "Breathing2" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+            */
+            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.W))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.S))
+            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.S))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.D))
+            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.D))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.A))
+            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.A))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
@@ -1322,10 +1330,11 @@ namespace GDApp
                 clone.Transform.Translate(0, 5 + i, 0);
                 clone.AddComponent(new MeshRenderer(mesh,
                     new BasicMaterial("cube_material", shader,
-                    Color.White, 1, textureDictionary["crate1"])));
+                    Color.White, 1, textureDictionary["crate1"])));  //add the component of this stuff for sound
 
                 //add desc and value to a pickup used when we collect/remove/collide with it
-                clone.AddComponent(new PickupBehaviour("ammo pack", 15));
+                clone.AddComponent(new PickupBehaviour("ammo pack", 15)); 
+
 
                 //add Collision Surface(s)
                 collider = new MyPlayerCollider();
@@ -1336,6 +1345,65 @@ namespace GDApp
                     cube.Transform.LocalScale),
                     new MaterialProperties(0.8f, 0.8f, 0.7f));
                 collider.Enable(false, 10);
+
+                
+
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+
+        //Code for triggering sound when colliding with cube model
+        private void InitializeSoundTriggers(Scene level)
+        {
+            //ADD CUBE
+           
+            
+
+
+            //add AudioBehaviour
+            object[] parameters = { "Foreman line1" };
+            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                EventActionType.OnPlay2D, parameters));
+
+            //add cube to level
+            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
+            var shader = new BasicShader(Application.Content, false, true);
+            //re-use the mesh
+            var mesh = new CubeMesh();
+            //clone the cube
+            var cube = new GameObject("audioCube", GameObjectType.Consumable, false);
+
+
+
+            GameObject clone = null;
+
+            for (int i = 1; i < 40; i += 1)
+            {
+                //clone the archetypal cube
+                clone = cube.Clone() as GameObject;
+                clone.Name = $"audioCube - {i}";
+                clone.Transform.Translate(0, 1 + i, 0);
+                clone.AddComponent(new MeshRenderer(mesh,
+                    new BasicMaterial("audioCube_material", shader,
+                    Color.White, 1, textureDictionary["crate1"])));  //add the component of this stuff for sound
+
+                //add desc and value to a pickup used when we collect/remove/collide with it
+                clone.AddComponent(new PickupBehaviour("ammo pack", 15));
+
+
+                //add Collision Surface(s)
+                collider = new MyPlayerCollider();
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    cube.Transform.LocalTranslation,
+                    cube.Transform.LocalRotation,
+                    cube.Transform.LocalScale),
+                    new MaterialProperties(0.8f, 0.8f, 0.7f));
+                collider.Enable(false, 10);
+
+
 
                 //add To Scene Manager
                 level.Add(clone);
