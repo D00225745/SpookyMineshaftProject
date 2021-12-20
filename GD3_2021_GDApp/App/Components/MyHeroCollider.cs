@@ -23,15 +23,33 @@ namespace GDApp
                 EventDispatcher.Raise(new EventData(EventCategoryType.GameObject,
                     EventActionType.OnRemoveObject, parameters));
 
-                object[] parameters1 = { "health", 1 };
-                EventDispatcher.Raise(new EventData(EventCategoryType.UI,
-                    EventActionType.OnHealthDelta, parameters1));
+                //this accesses sound, after accessing it raise the event by EventDispatcher.raise
+                var pickupBehaviour = parentGameObject.GetComponent<PickupBehaviour>();
 
+                //below is original work for raising var pickupBehaviour that doesn't work
+                object[] parameters1 = { pickupBehaviour };
+                //raises the event as eventDispatcher
+                EventDispatcher.Raise(new EventData(EventCategoryType.Pickup,
+                     EventActionType.OnPlay2D, parameters1));
+                //pickupBehaviour.Sound
+
+                
+                object[] parameters2 = { "PlayerForeman line2" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters2));
+                
+
+                /* object[] parameters1 = { "health", 1 };
+                 EventDispatcher.Raise(new EventData(EventCategoryType.UI,
+                     EventActionType.OnHealthDelta, parameters1));
+                */
                 // EventDispatcher.Raise(new EventData(EventCategoryType.Inventory,
                 //  EventActionType.OnAddInventory, parameters1));
             }
 
             base.HandleResponse(parentGameObject);
         }
+
+
     }
 }

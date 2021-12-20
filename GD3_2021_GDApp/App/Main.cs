@@ -83,6 +83,11 @@ namespace GDApp
         /// </summary>
         private ContentDictionary<Model> modelDictionary;
 
+        /// <summary>
+        /// Quick lookup for all videos used within the game by texture behaviours
+        /// </summary>
+        private ContentDictionary<Video> videoDictionary;
+
         //temps
         private Scene activeScene;
 
@@ -249,13 +254,29 @@ namespace GDApp
                     EventActionType.OnHealthDelta, parameters));
             }
 
-            //Input key to trigger the pause menu
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.P))
+
+            var mainGameUIScene = new UIScene("main game ui");
+
+            var hudTextureObj = new UITextureObject("HUD",
+                 UIObjectType.Texture,
+                 new Transform2D(new Vector2(0, 0),
+                 new Vector2(1, 1),
+                 MathHelper.ToRadians(0)),
+                 0, Content.Load<Texture2D>("Assets/Textures/UI/Progress/hud"));
+            //add the ui element to the scene
+            hudTextureObj.Color = Color.White;
+            mainGameUIScene.Add(hudTextureObj);
+
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
+                object[] parameters0 = { "main menu video" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Video,
+                     EventActionType.OnPlay, parameters0));
+
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                           EventActionType.OnPause));
 
-                //*!*          //Stops the Minewhispers and other included sound from playing during the pause menu
                 object[] parameters = { "MineWhispers" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnStop, parameters));
@@ -267,6 +288,11 @@ namespace GDApp
                 object[] parameters2 = { "Heartbeat" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnStop, parameters2));
+
+                object[] parameters3 = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters3));
+
             }
             else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.O))
             {
@@ -274,47 +300,191 @@ namespace GDApp
                     EventActionType.OnPlay));
             }
 
-            /* doesn't work as intended, forever spams the breathing sound without letting it finish
-            if (Input.Keys.IsReleased(Microsoft.Xna.Framework.Input.Keys.B))
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F1))
             {
-                object[] parameters = { "Breathing2" };
+                object[] parameters = { "PlayerForeman line1" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
-            */
-            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F2))
+            {
+                object[] parameters = { "PlayerForeman line2" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F3))
+            {
+                object[] parameters = { "Foreman line3" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F4))
+            {
+                object[] parameters = { "Foreman line4" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F5))
+            {
+                object[] parameters = { "Foreman line5" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F6))
+            {
+                object[] parameters = { "Foreman line6" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F7))
+            {
+                object[] parameters = { "Foreman lineplayerdefeat" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F8))
+            {
+                object[] parameters = { "Foreman lineplayervictory" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Y))
+            {
+                object[] parameters = { "Player Dialogue 3 Edited" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.U))
+            {
+                object[] parameters = { "Player Dialogue 4 Edited" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.I))
+            {
+                object[] parameters = { "Player Dialogue 5 Edited" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.O))
+            {
+                object[] parameters = { "Player Dialogue 6 Edited" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.P))
+            {
+                object[] parameters = { "Player Dialogue 7 Edited" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.K))
+            {
+                object[] parameters = { "Player Dialogue 8 Edited" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.V))
+            {
+                object[] parameters = { "main menu video" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Video,
+                    EventActionType.OnPlay, parameters));
+            }
+
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.Space))
+            {
+                object[] parameters = { "Jump" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.W))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.S))
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.S))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.D))
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.D))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.IsPressed(Microsoft.Xna.Framework.Input.Keys.A))
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.A))
             {
                 object[] parameters = { "Steps" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F))
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.F))
             {
                 object[] parameters = { "FlashlightFlickOn" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space))
+            {
+                object[] parameters = { "Jump" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.A))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.S))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.D))
+            {
+                object[] parameters = { "Steps" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+
+                if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.C))
+                    Application.SceneManager.ActiveScene.CycleCameras();
+
+
             }
 
             base.Update(gameTime);
@@ -326,7 +496,7 @@ namespace GDApp
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
         }
 
@@ -365,7 +535,7 @@ namespace GDApp
             Input.Mouse.Position = Screen.Instance.ScreenCentre;
 
             //turn on/off debug info
-            InitializeDebugUI(true, true);
+            //InitializeDebugUI(true, true);
 
             //to show the menu we must start paused for everything else!
             EventDispatcher.Raise(new EventData(EventCategoryType.Menu, EventActionType.OnPause));
@@ -382,14 +552,21 @@ namespace GDApp
             //why not try the new and improved ContentDictionary instead of a basic Dictionary?
             fontDictionary = new ContentDictionary<SpriteFont>();
             modelDictionary = new ContentDictionary<Model>();
+
+            videoDictionary = new ContentDictionary<Video>();
         }
 
         private void LoadAssets()
         {
             LoadModels();
             LoadTextures();
+            LoadVideos();
             LoadSounds();
             LoadFonts();
+        }
+        private void LoadVideos()
+        {
+            videoDictionary.Add("Assets/Video/main_menu_video");
         }
 
         /// <summary>
@@ -419,6 +596,9 @@ namespace GDApp
         /// </summary>
         private void LoadSounds()
         {
+            var soundEffect0 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Jump");
+
             var soundEffect =
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/MineWhispers");
 
@@ -515,8 +695,21 @@ namespace GDApp
             var dialogueForeman7 =
                 Content.Load<SoundEffect>("Assets/Sounds/Effects/Foreman lineplayervictory");
 
+            var dialoguePlayerForeman =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerForeman line1");
+
+            var dialoguePlayerForeman1 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/PlayerForeman line2");
+
 
             //add the new sound effect
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "Jump",
+                soundEffect0,
+                SoundCategoryType.BackgroundMusic,
+                new Vector3(1, 0, 0),
+                true));
+
             soundManager.Add(new GDLibrary.Managers.Cue(
                 "MineWhispers",
                 soundEffect,
@@ -529,7 +722,7 @@ namespace GDApp
                 soundEffect1,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
-                false));
+                true));
 
             soundManager.Add(new GDLibrary.Managers.Cue(
                 "Breathing2",
@@ -740,6 +933,20 @@ namespace GDApp
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PlayerForeman line1",
+                dialoguePlayerForeman,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "PlayerForeman line2",
+                dialoguePlayerForeman1,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
         }
 
         /// <summary>
@@ -765,6 +972,7 @@ namespace GDApp
             //ui
             textureDictionary.Add("ui_progress_32_8", Content.Load<Texture2D>("Assets/Textures/UI/Controls/ui_progress_32_8"));
             textureDictionary.Add("progress_white", Content.Load<Texture2D>("Assets/Textures/UI/Controls/progress_white"));
+            textureDictionary.Add("HP_Bar_V2", Content.Load<Texture2D>("Assets/Textures/UI/Progress/HP_Bar_V2"));
 
             //menu
             textureDictionary.Add("mainmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/mainmenu"));
@@ -790,6 +998,7 @@ namespace GDApp
             //remove all models used for the game and free RAM
             modelDictionary?.Dispose();
             fontDictionary?.Dispose();
+            videoDictionary?.Dispose();
 
             base.UnloadContent();
         }
@@ -812,12 +1021,2805 @@ namespace GDApp
             //InitializeCubes(activeScene);
             //InitializeModels(activeScene);
 
-            InitializeCollidables(activeScene, worldScale);
+            //InitializeSkybox(activeScene, 1000);
+            //InitializeCubes(activeScene);
+            //InitializeModels(activeScene);
 
+            #region Props
+
+            InitializeElevator(activeScene);
+            InitializeElevatorG(activeScene);
+            InitializeElevatorW(activeScene);
+            InitializeSpeaker(activeScene);
+            InitializeLight(activeScene);
+
+
+            #endregion
+            #region Level
+            InitializeTunnel1(activeScene);
+            InitializeTunnel2(activeScene);
+            InitializeTunnel3(activeScene);
+            InitializeTunnel4(activeScene);
+            InitializeTunnel5(activeScene);
+            InitializeTunnel6(activeScene);
+            InitializeTunnel7(activeScene);
+            InitializeTunnel8(activeScene);
+            InitializeTunnel9(activeScene);
+            InitializeTunnel10(activeScene);
+            InitializeTunnel11(activeScene);
+            InitializeTunnel12(activeScene);
+            InitializeTunnel13(activeScene);
+            InitializeTunnel14(activeScene);
+            InitializeTunnel15(activeScene);
+            InitializeTunnel16(activeScene);
+            InitializeTunnel17(activeScene);
+            InitializeTunnel18(activeScene);
+            InitializeTunnel19(activeScene);
+            InitializeTunnel20(activeScene);
+            InitializeTunnel21(activeScene);
+            InitializeTunnel22(activeScene);
+            InitializeTunnel23(activeScene);
+            InitializeTunnel24(activeScene);
+
+            InitializeHub(activeScene);
+
+            InitializeTurns(activeScene);
+            InitializeTurns2(activeScene);
+            InitializeTurns3(activeScene);
+            InitializeTurns4(activeScene);
+            InitializeTurns5(activeScene);
+            InitializeTurns6(activeScene);
+            InitializeTurns7(activeScene);
+            InitializeTurns8(activeScene);
+            InitializeTurns9(activeScene);
+            InitializeTurns10(activeScene);
+            InitializeTurns11(activeScene);
+            InitializeTurns12(activeScene);
+            InitializeTurns13(activeScene);
+            InitializeTurns14(activeScene);
+            InitializeTurns15(activeScene);
+            InitializeTurns16(activeScene);
+            InitializeTurns17(activeScene);
+
+            InitializeRail(activeScene);
+            InitializeRail1(activeScene);
+            InitializeRail2(activeScene);
+            InitializeRail3(activeScene);
+            InitializeRail4(activeScene);
+            InitializeRail5(activeScene);
+            InitializeRail6(activeScene);
+            InitializeRail7(activeScene);
+            InitializeRail8(activeScene);
+            InitializeRail9(activeScene);
+            InitializeRail10(activeScene);
+            InitializeCart(activeScene);
+
+            InitializeHelmet(activeScene);
+
+            InitializeStructs(activeScene);
+            InitializeStructs1(activeScene);
+            InitializeStructs2(activeScene);
+            InitializeStructs3(activeScene);
+            InitializeStructs4(activeScene);
+            InitializeStructs5(activeScene);
+            InitializeStructs6(activeScene);
+            InitializeStructs7(activeScene);
+            InitializeStructs8(activeScene);
+            InitializeStructs9(activeScene);
+            InitializeStructs10(activeScene);
+            InitializeStructs11(activeScene);
+            InitializeStructs12(activeScene);
+            InitializeStructs13(activeScene);
+            InitializeStructs14(activeScene);
+            InitializeStructs15(activeScene);
+            InitializeStructs16(activeScene);
+            InitializeStructs17(activeScene);
+            InitializeStructs18(activeScene);
+            InitializeStructs19(activeScene);
+            InitializeStructs20(activeScene);
+            InitializeStructs21(activeScene);
+            InitializeStructs22(activeScene);
+            InitializeStructs23(activeScene);
+            InitializeStructs24(activeScene);
+            InitializeStructs25(activeScene);
+            InitializeStructs26(activeScene);
+            InitializeStructs27(activeScene);
+            InitializeStructs28(activeScene);
+            InitializeStructs29(activeScene);
+            InitializeStructs30(activeScene);
+            InitializeStructs31(activeScene);
+            InitializeStructs32(activeScene);
+            InitializeStructs33(activeScene);
+            InitializeStructs34(activeScene);
+            InitializeStructs35(activeScene);
+            InitializeStructs36(activeScene);
+            InitializeStructs37(activeScene);
+            InitializeStructs38(activeScene);
+            InitializeStructs39(activeScene);
+            InitializeStructs40(activeScene);
+            InitializeStructs41(activeScene);
+            InitializeStructs42(activeScene);
+            InitializeStructs43(activeScene);
+            InitializeStructs44(activeScene);
+            InitializeStructs45(activeScene);
+            InitializeStructs46(activeScene);
+            InitializeStructs47(activeScene);
+            InitializeStructs48(activeScene);
+            InitializeStructs49(activeScene);
+            InitializeStructs50(activeScene);
+            InitializeStructs51(activeScene);
+            InitializeStructs52(activeScene);
+            InitializeStructs53(activeScene);
+            InitializeStructs54(activeScene);
+            InitializeStructs55(activeScene);
+            InitializeStructs56(activeScene);
+            InitializeStructs57(activeScene);
+            InitializeStructs58(activeScene);
+            InitializeStructs59(activeScene);
+            #endregion
+            InitializeCollidables(activeScene, worldScale);
             sceneManager.Add(activeScene);
             sceneManager.LoadScene("level 1");
         }
 
+        #region Props
+        private void InitializeSpeaker(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/RustedSteel"));
+
+            //tunnel_turn
+            var archetypalSpeaker = new GameObject("speaker", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/speaker"), material);
+            renderer.Material = material;
+            archetypalSpeaker.AddComponent(renderer);
+
+            archetypalSpeaker.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/speaker");
+
+            archetypalSpeaker.Transform.Rotate(-90f, 0f, 0f);
+            archetypalSpeaker.Transform.Translate(2f, 0.5f, -10.8f);
+            archetypalSpeaker.Transform.SetScale(10f, 10f, 10f);
+
+            level.Add(archetypalSpeaker);
+        }
+
+        private void InitializeLight(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/yellow"));
+
+            //tunnel_turn
+            var archetypalLight = new GameObject("light", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/light"), material);
+            renderer.Material = material;
+            archetypalLight.AddComponent(renderer);
+
+            archetypalLight.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/light");
+
+            archetypalLight.Transform.Rotate(180f, 10f, 0f);
+            archetypalLight.Transform.Translate(10f, 0.2f, -25f);
+            archetypalLight.Transform.SetScale(0.8f, 0.8f, 0.8f);
+
+            level.Add(archetypalLight);
+        }
+
+        #endregion
+
+        #region TunnelTurns
+
+        private void InitializeTurns(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            //tunnel_turn
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-21.5f, 0.3f, 50f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns2(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            //tunnel_turn
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
+            archetypalTunnelTurn.Transform.Translate(102f, 0.3f, 61.5f);
+            archetypalTunnelTurn.Transform.Scale(1f, 1f, 1.3f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns3(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(114f, 0.3f, 10f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns4(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(13f, 0.28f, -185f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns5(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-46f, 0.28f, -201f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns6(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-38.3f, 0.28f, -229f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns7(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-5.2f, 0.28f, -168f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns8(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-48.5f, 0.28f, -180f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns9(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-53f, 0.28f, -138f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns10(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-102f, 0.28f, -198f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns11(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-98f, 0.28f, -240.5f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns12(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-60f, 0.28f, -5.7f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns13(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-76f, 0.28f, 53.5f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns14(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-115f, 0.28f, 46f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns15(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-131f, 0.28f, 105f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns16(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-175f, 0.28f, 97.7f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+
+        private void InitializeTurns17(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
+            renderer.Material = material;
+            archetypalTunnelTurn.AddComponent(renderer);
+
+            archetypalTunnelTurn.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+
+            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnelTurn.Transform.Translate(-181f, 0.28f, 127.7f);
+            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+
+            level.Add(archetypalTunnelTurn);
+        }
+        #endregion
+
+        #region Tunnel
+        private void InitializeTunnel1(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(10f, 0.28f, 54.7f);
+            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
+
+            renderer.Material = material;
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel2(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            // archetypalTunnel.IsStatic = false;
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(26f, 0.28f, 54.7f);
+            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
+
+            renderer.Material = material;
+            level.Add(archetypalTunnel);
+        }
+        private void InitializeTunnel3(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            //material.Texture = Content.Load<Texture2D>("Assets/Textures/Cave/Rock");
+            //material.Shader = new BasicShader(Application.Content);
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(42f, 0.28f, 54.7f);
+            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel4(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(58f, 0.28f, 54.7f);
+            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel5(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(74f, 0.28f, 54.7f);
+            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+        //tunnel 2
+        private void InitializeTunnel6(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(72f, 0.28f, -2f);
+            archetypalTunnel.Transform.Scale(1.2f, 1.2f, 1.4f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel7(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(106.5f, 0.28f, 34f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel8(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -77f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel9(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -93f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel10(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -109f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel11(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -125f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel12(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(-13f, 0.28f, -141f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+        //Right side of split tunnel (on elevator side)
+        private void InitializeTunnel13(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -77f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel14(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -93f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel15(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -109f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel16(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -125f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel17(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -141f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel18(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -157f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+
+        private void InitializeTunnel19(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(-82f, 0.28f, -240.5f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel20(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
+            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -157f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        //south tunnel
+        private void InitializeTunnel21(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(-44f, 0.28f, -5.6f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel22(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(-104f, 0.28f, 46f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel23(Scene level)
+        {
+            //tunnel
+
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(-159f, 0.28f, 97.7f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTunnel24(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
+            renderer.Material = material;
+            archetypalTunnel.AddComponent(renderer);
+
+            archetypalTunnel.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
+
+            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
+            archetypalTunnel.Transform.Translate(-175f, 0.28f, 97.7f);
+            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalTunnel);
+        }
+        #endregion
+
+        #region Elements
+        private void InitializeHub(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+
+            var archetypalCave = new GameObject("cave", GameObjectType.Architecture);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/hub_improved"), material);
+            renderer.Material = material;
+            archetypalCave.AddComponent(renderer);
+
+            archetypalCave.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/hub_improved");
+
+            archetypalCave.Transform.Rotate(-90f, 90f, 0f);
+            archetypalCave.Transform.Translate(1.2f, 0.2f, 1.3f);
+
+            level.Add(archetypalCave);
+        }
+
+        
+private void InitializeElevator(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/Metal"));
+
+            var archetypalElevator = new GameObject("elevator", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/elevator"), material);
+            renderer.Material = material;
+
+
+            archetypalElevator.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/elevator");
+
+            archetypalElevator.Transform.Rotate(270f, 270, 0f);
+            archetypalElevator.Transform.Translate(51f, 11f, -16f);
+            archetypalElevator.Transform.SetScale(1.3f, 1.5f, 1.3f);
+            level.Add(archetypalElevator);
+        }
+
+        private void InitializeElevatorW(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/Metal"));
+
+            var archetypalElevatorW = new GameObject("elevator", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/elevatorW"), material);
+            renderer.Material = material;
+
+
+            archetypalElevatorW.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/elevatorW");
+
+            archetypalElevatorW.Transform.Rotate(270f, 270, 0f);
+            archetypalElevatorW.Transform.Translate(51f, 11f, -16f);
+            archetypalElevatorW.Transform.SetScale(1.3f, 1.5f, 1.3f);
+            level.Add(archetypalElevatorW);
+        }
+
+        private void InitializeElevatorG(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/Red"));
+
+            var archetypalElevatorG = new GameObject("elevator", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/elevatorG"), material);
+            renderer.Material = material;
+
+
+            archetypalElevatorG.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/elevatorG");
+
+            archetypalElevatorG.Transform.Rotate(270f, 90, 0f);
+            archetypalElevatorG.Transform.Translate(44f, 7.5f, -16f);
+            archetypalElevatorG.Transform.SetScale(6f, 0.5f, 5f);
+            level.Add(archetypalElevatorG);
+        }
+
+        #region Rails and Minecart
+        private void InitializeRail(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail.AddComponent(renderer);
+
+            archetypalRail.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail.Transform.Translate(2f, 0.5f, -10.8f);
+            archetypalRail.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail);
+        }
+
+        private void InitializeRail1(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail1 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail1.AddComponent(renderer);
+
+            archetypalRail1.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail1.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail1.Transform.Translate(2f, 0.5f, -26f);
+            archetypalRail1.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail1);
+        }
+
+        private void InitializeRail2(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail2 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail2.AddComponent(renderer);
+
+            archetypalRail2.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail2.Transform.Rotate(-90f, 115f, 0f);
+            archetypalRail2.Transform.Translate(1.3f, 0.5f, -42.3f);
+            archetypalRail2.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail2);
+        }
+
+        private void InitializeRail3(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail3 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail3.AddComponent(renderer);
+
+            archetypalRail3.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail3.Transform.Rotate(-90f, 95f, 0f);
+            archetypalRail3.Transform.Translate(-7.7f, 0.5f, -72.2f);
+            archetypalRail3.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail3);
+        }
+
+        private void InitializeRail4(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail4 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail4.AddComponent(renderer);
+
+            archetypalRail4.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail4.Transform.Rotate(-90f, 100f, 0f);
+            archetypalRail4.Transform.Translate(-5.1f, 0.5f, -56.8f);
+            archetypalRail4.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail4);
+        }
+
+        private void InitializeRail5(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail5 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail5.AddComponent(renderer);
+
+            archetypalRail5.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail5.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail5.Transform.Translate(-8.9f, 0.5f, -87.8f);
+            archetypalRail5.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail5);
+        }
+
+        private void InitializeRail6(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail6 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail6.AddComponent(renderer);
+
+            archetypalRail6.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail6.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail6.Transform.Translate(-8.9f, 0.5f, -103f);
+            archetypalRail6.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail6);
+        }
+
+        private void InitializeRail7(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail7 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail7.AddComponent(renderer);
+
+            archetypalRail7.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail7.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail7.Transform.Translate(-8.9f, 0.5f, -140);
+            archetypalRail7.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail7);
+        }
+
+        private void InitializeRail8(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail8 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail8.AddComponent(renderer);
+
+            archetypalRail8.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail8.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail8.Transform.Translate(-8.9f, 0.5f, -116f);
+            archetypalRail8.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail8);
+        }
+
+        private void InitializeRail9(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail9 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail9.AddComponent(renderer);
+
+            archetypalRail9.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail9.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail9.Transform.Translate(-8.9f, 0.5f, -130f);
+            archetypalRail9.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail9);
+        }
+
+        private void InitializeRail10(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/OldMetal"));
+
+            var archetypalRail10 = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/rail"), material);
+            renderer.Material = material;
+            archetypalRail10.AddComponent(renderer);
+
+            archetypalRail10.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/rail");
+
+            archetypalRail10.Transform.Rotate(-90f, 90f, 0f);
+            archetypalRail10.Transform.Translate(-8.9f, 0.5f, -155f);
+            archetypalRail10.Transform.SetScale(0.5f, 0.8f, 0.3f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalRail10);
+        }
+
+        private void InitializeCart(Scene level)
+        {
+            //tunnel
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/BlackMetal"));
+
+            var archetypalCart = new GameObject("rail", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/cart"), material);
+            renderer.Material = material;
+            archetypalCart.AddComponent(renderer);
+
+            archetypalCart.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/cart");
+
+            archetypalCart.Transform.Rotate(0f, 90f, 0f);
+            archetypalCart.Transform.Translate(-9f, 1.3f, -155f);
+            archetypalCart.Transform.SetScale(1.5f, 1f, 1.1f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalCart);
+        }
+        #endregion
+
+
+
+        private void InitializeHelmet(Scene level)
+        {
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/paint_and_metal/yellow"));
+
+            var archetypalHelmet = new GameObject("helmet", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/helmet"), material);
+            renderer.Material = material;
+
+
+            archetypalHelmet.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/helmet");
+
+            archetypalHelmet.Transform.Rotate(270f, 270, 0f);
+            archetypalHelmet.Transform.Translate(30f, 1.3f, -20f);
+            level.Add(archetypalHelmet);
+        }
+        #endregion
+
+        #region Structs
+
+        #region YSplit
+        private void InitializeStructs(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(7.7f, 8f, -29f);
+            archetypalStructs.Transform.SetScale(1.2f, 0.8f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs1(Scene level)
+        {
+            //Y Split Left
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-2f, 6.3f, -75f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs3(Scene level)
+        {
+            //Y Split Left
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-4f, 6.3f, -95f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs4(Scene level)
+        {
+            //Y Split Left
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-4f, 6.3f, -115f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs5(Scene level)
+        {
+            //Y Split Left
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-4, 6.3f, -135f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs10(Scene level)
+        {
+            //Y Split Left
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-4, 6.3f, -155f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs11(Scene level)
+        {
+            //Y Split Left
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-4, 6.3f, -170f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs2(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -75f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs6(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -95f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs7(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -115f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs8(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -135f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs12(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -155f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs13(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -175f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+        #endregion
+
+        #region BendShaft
+        private void InitializeStructs9(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-1.7f, 6.3f, -85f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs14(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(15f, 6.3f, -187f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs15(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-29f, 6.3f, -6.7f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs16(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-49f, 6.3f, -7);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs17(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-62f, 6.3f, -7);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs18(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-62f, 6.3f, 5);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs19(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-62f, 6.3f, 25);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs20(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-62f, 6.3f, 44);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs21(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-76f, 6.3f, 44.5f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs22(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-90f, 6.3f, 44f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs23(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-116f, 6.3f, 44f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs24(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-117f, 6.3f, 59f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs25(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-117.3f, 6.3f, 80f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs26(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-117.3f, 6.3f, 94f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs27(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-132f, 6.3f, 95.5f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs28(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-144f, 6.3f, 95.5f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs29(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-164f, 6.3f, 95.5f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs30(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-176f, 6.3f, 95.5f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs31(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-177.4f, 6.3f, 110f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs32(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-178f, 5.5f, 125f);
+            archetypalStructs.Transform.SetScale(1.5f, 0.6f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        #endregion
+
+        #region LoopShaft
+        private void InitializeStructs33(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-11f, 6.3f, 34f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs34(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-11.5f, 6.3f, 50f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+
+        private void InitializeStructs35(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-8f, 6f, 52.4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs36(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(28f, 6f, 52.4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs37(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(48f, 6f, 52.4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs38(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(68f, 6f, 52.4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs39(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(88f, 6f, 52.4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs40(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(104f, 6f, 52.4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs41(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(115.5f, 6f, 50f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs42(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(116f, 6f, 30f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs43(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(116f, 6f, 8f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs44(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(104f, 6f, -4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs45(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(84f, 6f, -4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs46(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(64f, 6f, -3f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs47(Scene level)
+        {
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(70f, 6f, -4f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+
+        #endregion
+
+        #region Other Structs
+
+        private void InitializeStructs48(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(3f, 6.3f, -199f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs49(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-13f, 6.3f, -198.8f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs50(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-34.2f, 6.3f, -198.8f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs51(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-36.3f, 6.3f, -198.8f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs52(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-36.3f, 6.3f, -218.8f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs53(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-36.5f, 6.3f, -230f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs54(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-51f, 6.3f, -242.7f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs55(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-68f, 6.3f, -242.7f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs56(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-85f, 6.3f, -242.7f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs57(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 180f, 0f);
+            archetypalStructs.Transform.Translate(-99f, 6.3f, -242.7f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs58(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-100.2f, 6.3f, -228f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+        private void InitializeStructs59(Scene level)
+        {
+            //Y Split Right
+            //Support Structures
+            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
+            var archetypalStructs = new GameObject("Support", GameObjectType.Interactable);
+            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/structs"), material);
+            renderer.Material = material;
+            archetypalStructs.AddComponent(renderer);
+
+            archetypalStructs.AddComponent(renderer);
+            renderer.Model = Content.Load<Model>("Assets/Models/structs");
+
+            archetypalStructs.Transform.Rotate(-90f, 90f, 0f);
+            archetypalStructs.Transform.Translate(-100.2f, 6.3f, -214f);
+            archetypalStructs.Transform.SetScale(2f, 0.7f, 8f);
+
+            renderer.Material = material;
+
+            level.Add(archetypalStructs);
+        }
+
+
+
+
+        #endregion
+
+        #endregion
         /// <summary>
         /// Adds menu and UI elements
         /// </summary>
@@ -842,7 +3844,7 @@ namespace GDApp
             var mainMenuUIScene = new UIScene(AppData.MENU_MAIN_NAME);
 
             /**************************** Background Image ****************************/
-
+            /*
             //main background
             var texture = textureDictionary["mainmenu"];
             //get how much we need to scale background to fit screen, then downsizes a little so we can see game behind background
@@ -857,24 +3859,67 @@ namespace GDApp
                 texture.GetOriginAtCenter(), //if we want to position image on screen center then we need to set origin as texture center
                 texture);
 
+            */
+            var texture = textureDictionary["progress_white"];
+            var position = new Vector2(_graphics.PreferredBackBufferWidth / 2, 50);
+            var origin = new Vector2(texture.Width / 2, texture.Height / 2);
+
+            //var mainGameUIScene = new UIScene(AppData.UI_SCENE_MAIN_NAME);
+
+            
+            //add a health bar in the centre of the game window
+
+            texture = textureDictionary["checkerboard"]; //any texture given we will replace it
+            position = new Vector2(200, 200);
+
+            var video = videoDictionary["main_menu_video"];
+            origin = new Vector2(video.Width / 2, video.Height / 2);
+
+            //create the UI element
+            var videoTextureObj = new UITextureObject("main_menu_video",
+                UIObjectType.Texture,
+
+                new Transform2D(origin, new Vector2(1f, 1f), 0),
+                0,
+                Color.White,
+                origin,
+                texture);
+
+            //add a video behaviour
+            videoTextureObj.AddComponent(new UIVideoTextureBehaviour(
+                new VideoCue(video, 0, false, true)));
+            
+
+            menuObject = videoTextureObj;
+            
+            //add the ui element to the scene
+            mainMenuUIScene.Add(videoTextureObj);
+
             //add ui object to scene
             mainMenuUIScene.Add(menuObject);
+
+            object[] parameters = { "main menu video" };
+            EventDispatcher.Raise(new EventData(EventCategoryType.Video,
+                    EventActionType.OnPlay, parameters));
+
+            //add ui object to scene
+            //mainMenuUIScene.Add(menuObject);
 
             /**************************** Play Button ****************************/
 
             var btnTexture = textureDictionary["genericbtn"];
             var sourceRectangle
-                = new Microsoft.Xna.Framework.Rectangle(0, 0,
+                = new Microsoft.Xna.Framework.Rectangle(2, 2,
                 btnTexture.Width, btnTexture.Height);
-            var origin = new Vector2(btnTexture.Width / 2.0f, btnTexture.Height / 2.0f);
+            var btnOrigin = new Vector2(btnTexture.Width / 2.0f, btnTexture.Height / 2.0f);
 
             var playBtn = new UIButtonObject(AppData.MENU_PLAY_BTN_NAME, UIObjectType.Button,
                 new Transform2D(AppData.MENU_PLAY_BTN_POSITION,
-                0.5f * Vector2.One, 0),
+                1f * Vector2.One, 0.58f),
                 0.1f,
                 Color.White,
                 SpriteEffects.None,
-                origin,
+                btnOrigin,
                 btnTexture,
                 null,
                 sourceRectangle,
@@ -884,8 +3929,7 @@ namespace GDApp
                 Vector2.Zero);
 
             //demo button color change
-            var comp = new UIColorMouseOverBehaviour(Color.Orange, Color.White);
-            playBtn.AddComponent(comp);
+            playBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Green, Color.White));
 
             mainMenuUIScene.Add(playBtn);
 
@@ -893,15 +3937,15 @@ namespace GDApp
 
             //same button texture so we can re-use texture, sourceRectangle and origin
 
-            var controlsBtn = new UIButtonObject(AppData.MENU_CONTROLS_BTN_NAME, UIObjectType.Button,
-                new Transform2D(AppData.MENU_CONTROLS_BTN_POSITION, 0.5f * Vector2.One, 0),
-                0.1f,
-                Color.White,
-                origin,
-                btnTexture,
-                "Controls",
-                fontDictionary["menu"],
-                Color.Black);
+            var controlsBtn = new UIButtonObject(AppData.MENU_CREDITS_BTN_NAME, UIObjectType.Button,
+                 new Transform2D(AppData.MENU_CREDITS_BTN_POSITION, 1f * Vector2.One, -0.1f),
+                 0.1f,
+                 Color.White,
+                 btnOrigin,
+                 btnTexture,
+                 "Credits",
+                 fontDictionary["menu"],
+                 Color.Black);
 
             //demo button color change
             controlsBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Orange, Color.White));
@@ -914,17 +3958,17 @@ namespace GDApp
 
             //use a simple/smaller version of the UIButtonObject constructor
             var exitBtn = new UIButtonObject(AppData.MENU_EXIT_BTN_NAME, UIObjectType.Button,
-                new Transform2D(AppData.MENU_EXIT_BTN_POSITION, 0.5f * Vector2.One, 0),
+                new Transform2D(AppData.MENU_EXIT_BTN_POSITION, 1f * Vector2.One, -0.5f),
                 0.1f,
                 Color.Orange,
-                origin,
+                btnOrigin,
                 btnTexture,
                 "Exit",
                 fontDictionary["menu"],
                 Color.Black);
 
             //demo button color change
-            exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Orange, Color.White));
+            exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Red, Color.White));
 
             mainMenuUIScene.Add(exitBtn);
 
@@ -933,7 +3977,12 @@ namespace GDApp
             //add scene to the menu manager
             uiMenuManager.Add(mainMenuUIScene);
 
-            /************************** Controls Menu Scene **************************/
+            /************************** Credits Menu Scene **************************/
+            var cresitsMenuUIScene = new UIScene(AppData.MENU_CREDITS_NAME);
+            texture = textureDictionary["progress_white"];
+            position = new Vector2(_graphics.PreferredBackBufferWidth / 2, 50);
+            origin = new Vector2(texture.Width / 2, texture.Height / 2);
+
 
             /************************** Options Menu Scene **************************/
 
@@ -948,11 +3997,12 @@ namespace GDApp
         /// </summary>
         private void InitializeGameUI()
         {
+            
             //create the scene
             var mainGameUIScene = new UIScene(AppData.UI_SCENE_MAIN_NAME);
-
+            
             #region Add Health Bar
-
+            /*
             //add a health bar in the centre of the game window
             var texture = textureDictionary["progress_white"];
             var position = new Vector2(_graphics.PreferredBackBufferWidth / 2, 50);
@@ -975,19 +4025,73 @@ namespace GDApp
 
             //add the ui element to the scene
             mainGameUIScene.Add(healthTextureObj);
-
+            */
             #endregion Add Health Bar
+            
+            //create the scene
+            //var mainGameUIScene = new UIScene(AppData.UI_SCENE_MAIN_NAME);
+
+            #region Add Health Bar
+            //add a health bar in the centre of the game window
+            /*
+            var texture = textureDictionary["HP_Bar_V2"];
+            var position = new Vector2(_graphics.PreferredBackBufferWidth / 1.005f, 1020);
+            var origin = new Vector2(texture.Width / 2, texture.Height / 2);
+
+            //create the UI element
+            var healthTextureObj = new UITextureObject("health",
+                UIObjectType.Texture,
+                new Transform2D(position, new Vector2(1.40f, 0.50f), 0),
+                0,
+                Color.White,
+                origin,
+                texture);
+
+            //add a progress controller
+            healthTextureObj.AddComponent(new UIProgressBarController(5, 10));
+            */
+            
+            var texture = textureDictionary["HP_Bar_V2"];
+            var position = new Vector2(_graphics.PreferredBackBufferWidth / 1.08f, 1020);
+            var origin = new Vector2(texture.Width / 2, texture.Height / 2);
+
+            var healthTextureObj = new UITextureObject("health",
+                UIObjectType.Texture,
+                new Transform2D(position, new Vector2(1.06f, 0.5f), 0),
+                0,
+                Color.Green,
+                origin,
+                texture);
+            healthTextureObj.AddComponent(new UITimeColorFlipBehaviour(Color.Green, Color.Pink, 2000));
+            healthTextureObj.AddComponent(new UiHealthController(100, 100));
+
+            
+            mainGameUIScene.Add(healthTextureObj);
+            #endregion
+
+            //Creating the HUD
+            var hudTextureObj = new UITextureObject("HUD",
+                 UIObjectType.Texture,
+                 new Transform2D(new Vector2(0, 0),
+                 new Vector2(1, 1),
+                 MathHelper.ToRadians(0)),
+                 0, Content.Load<Texture2D>("Assets/Textures/UI/Progress/hud"));
+            //add the ui element to the scene
+            hudTextureObj.Color = Color.White;
+            mainGameUIScene.Add(healthTextureObj);
+            mainGameUIScene.Add(hudTextureObj);
+
 
             #region Add Text
 
             var font = fontDictionary["ui"];
-            var str = "player name";
+            var str = "Steve";
 
             //create the UI element
             nameTextObj = new UITextObject(str, UIObjectType.Text,
                 new Transform2D(new Vector2(50, 50),
                 Vector2.One, 0),
-                0, font, "Brutus Maximus");
+                0, font, "beta release");
 
             //  nameTextObj.Origin = font.MeasureString(str) / 2;
             //  nameTextObj.AddComponent(new UIExpandFadeBehaviour());
@@ -996,7 +4100,7 @@ namespace GDApp
             mainGameUIScene.Add(nameTextObj);
 
             #endregion Add Text
-
+            /*
             var defaultTexture = textureDictionary["reticuleDefault"];
             var alternateTexture = textureDictionary["reticuleOpen"];
             origin = defaultTexture.GetOriginAtCenter();
@@ -1016,6 +4120,7 @@ namespace GDApp
             reticule.AddComponent(new UIReticuleBehaviour());
 
             mainGameUIScene.Add(reticule);
+            */
 
             #region Add Scene To Manager & Set Active Scene
 
@@ -1031,6 +4136,8 @@ namespace GDApp
         /// <summary>
         /// Adds component to draw debug info to the screen
         /// </summary>
+         
+        /*
         private void InitializeDebugUI(bool showDebugInfo, bool showCollisionSkins = true)
         {
             if (showDebugInfo)
@@ -1044,7 +4151,7 @@ namespace GDApp
             if (showCollisionSkins)
                 Components.Add(new GDLibrary.Utilities.GDDebug.PhysicsDebugDrawer(this, Color.Red));
         }
-
+        */
         /******************************* Non-Collidables *******************************/
 
         /// <summary>
@@ -1064,7 +4171,7 @@ namespace GDApp
             var archetypalQuad = new GameObject("quad", GameObjectType.Skybox, true);
 
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
-
+            /*
             GameObject clone = null;
             //back
             clone = archetypalQuad.Clone() as GameObject;
@@ -1109,6 +4216,7 @@ namespace GDApp
             clone.Transform.Rotate(90, -90, 0);
             clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("skybox_sky_material", shader, Color.White, 1, textureDictionary["skybox_sky"])));
             level.Add(clone);
+        */
         }
 
         /// <summary>
@@ -1128,10 +4236,8 @@ namespace GDApp
             camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
 
             //add controller to actually move the noncollidable camera
-            camera.AddComponent(new FirstPersonController(0.05f, 0.025f, new Vector2(0.006f, 0.004f)));
-
-            //set initial position
-            camera.Transform.SetTranslation(0, 2, 10);
+            camera.AddComponent(new FirstPersonController(0.8f, 0.5f, new Vector2(0.5f, 0.4f))); //LEE CHANGED VALUES FROM 0.05f, 0.035f////////0.0012F AND 0.04        //set initial position
+            camera.Transform.SetTranslation(100, 100, 100);//10,12,10
 
             //add to level
             level.Add(camera);
@@ -1168,7 +4274,7 @@ namespace GDApp
             camera = new GameObject(AppData.CAMERA_FIRSTPERSON_COLLIDABLE_NAME, GameObjectType.Camera);
 
             //set initial position - important to set before the collider as collider capsule feeds off this position
-            camera.Transform.SetTranslation(0, 10, 40);
+            camera.Transform.SetTranslation(30, 10, 30);     //  , y, 
 
             //add components
             camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
@@ -1179,13 +4285,13 @@ namespace GDApp
             var collider = new MyHeroCollider(2, 2, true, false);
             camera.AddComponent(collider);
             collider.AddPrimitive(new Capsule(camera.Transform.LocalTranslation,
-                Matrix.CreateRotationX(MathHelper.PiOver2), 1, 3.6f),
-                new MaterialProperties(0.2f, 0.8f, 0.7f));
+                Matrix.CreateRotationX(MathHelper.PiOver2), 6, 3.6f),//1,3.6f    6 is the height of the capsule
+                new MaterialProperties(0.2f, 10f, 0.7f));//0.2f, 0.8f, 0.7f
             collider.Enable(false, 2);
 
             //add controller to actually move the collidable camera
             camera.AddComponent(new MyCollidableFirstPersonController(12,
-                        0.5f, 0.3f, new Vector2(0.006f, 0.004f)));
+                        0.5f, 0.3f, new Vector2(0.03f, 0.02f)));//12,0.5f,0.3f//0.006f, 0.004f
 
             //add to level
             level.Add(camera);
@@ -1207,9 +4313,9 @@ namespace GDApp
         private void InitializeCollidables(Scene level, float worldScale = 500)
         {
             InitializeCollidableGround(level, worldScale);
-            InitializeCollidableCubes(level);
+            InitializeCollidableForeman1Cubes(level);
 
-            InitializeCollidableModels(level);
+           //InitializeCollidableModels(level);
             //InitializeCollidableTriangleMeshes(level);
         }
 
@@ -1240,6 +4346,7 @@ namespace GDApp
             //level.Add(complexModel);
         }
 
+        /*
         private void InitializeCollidableModels(Scene level)
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
@@ -1277,6 +4384,7 @@ namespace GDApp
                 level.Add(clone);
             }
         }
+        */
 
         private void InitializeCollidableGround(Scene level, float worldScale)
         {
@@ -1293,21 +4401,22 @@ namespace GDApp
             var ground = new GameObject("ground", GameObjectType.Ground, true);
             ground.Transform.SetRotation(-90, 0, 0);
             ground.Transform.SetScale(worldScale, worldScale, 1);
-            ground.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1, textureDictionary["grass"])));
+            ground.AddComponent(new MeshRenderer(mesh, new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock")))); //new BasicMaterial("grass_material", shader, Color.White, 1, textureDictionary["grass"])));
+            //new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
 
             //add Collision Surface(s)
             collider = new Collider();
             ground.AddComponent(collider);
             collider.AddPrimitive(new JigLibX.Geometry.Plane(
                 ground.Transform.Up, ground.Transform.LocalTranslation),
-                new MaterialProperties(0.8f, 0.8f, 0.7f));
+                new MaterialProperties(0.8f, -0.4f, 0.7f));
             collider.Enable(true, 1);
 
             //add To Scene Manager
             level.Add(ground);
         }
 
-        private void InitializeCollidableCubes(Scene level)
+        private void InitializeCollidableForeman1Cubes(Scene level)
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
 
@@ -1318,80 +4427,23 @@ namespace GDApp
             //clone the cube
             var cube = new GameObject("cube", GameObjectType.Consumable, false);
 
+            
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
             GameObject clone = null;
 
-            for (int i = 5; i < 40; i += 5)
+            for (int i = 1; i < 2; i += 1)
             {
                 //clone the archetypal cube
                 clone = cube.Clone() as GameObject;
                 clone.Name = $"cube - {i}";
-                clone.Transform.Translate(0, 5 + i, 0);
-                clone.AddComponent(new MeshRenderer(mesh,
-                    new BasicMaterial("cube_material", shader,
-                    Color.White, 1, textureDictionary["crate1"])));  //add the component of this stuff for sound
-
-                //add desc and value to a pickup used when we collect/remove/collide with it
-                clone.AddComponent(new PickupBehaviour("ammo pack", 15)); 
-
-
-                //add Collision Surface(s)
-                collider = new MyPlayerCollider();
-                clone.AddComponent(collider);
-                collider.AddPrimitive(new Box(
-                    cube.Transform.LocalTranslation,
-                    cube.Transform.LocalRotation,
-                    cube.Transform.LocalScale),
-                    new MaterialProperties(0.8f, 0.8f, 0.7f));
-                collider.Enable(false, 10);
-
-                
-
-                //add To Scene Manager
-                level.Add(clone);
-            }
-        }
-
-
-        //Code for triggering sound when colliding with cube model
-        private void InitializeSoundTriggers(Scene level)
-        {
-            //ADD CUBE
-           
-            
-
-
-            //add AudioBehaviour
-            object[] parameters = { "Foreman line1" };
-            EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                EventActionType.OnPlay2D, parameters));
-
-            //add cube to level
-            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
-            var shader = new BasicShader(Application.Content, false, true);
-            //re-use the mesh
-            var mesh = new CubeMesh();
-            //clone the cube
-            var cube = new GameObject("audioCube", GameObjectType.Consumable, false);
-
-
-
-            GameObject clone = null;
-
-            for (int i = 1; i < 40; i += 1)
-            {
-                //clone the archetypal cube
-                clone = cube.Clone() as GameObject;
-                clone.Name = $"audioCube - {i}";
                 clone.Transform.Translate(0, 1 + i, 0);
                 clone.AddComponent(new MeshRenderer(mesh,
-                    new BasicMaterial("audioCube_material", shader,
-                    Color.White, 1, textureDictionary["crate1"])));  //add the component of this stuff for sound
+                    new BasicMaterial("cube_material", shader,
+                    Color.White, 1, textureDictionary["crate1"])));
 
                 //add desc and value to a pickup used when we collect/remove/collide with it
-                clone.AddComponent(new PickupBehaviour("ammo pack", 15));
-
+                clone.AddComponent(new PickupBehaviour("ammo pack", 15, "PlayerForeman line1"));
 
                 //add Collision Surface(s)
                 collider = new MyPlayerCollider();
@@ -1403,7 +4455,12 @@ namespace GDApp
                     new MaterialProperties(0.8f, 0.8f, 0.7f));
                 collider.Enable(false, 10);
 
-
+                //add the playerforeman line to play when the crate is spawned
+                
+                object[] parameters3 = { "PlayerForeman line1" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters3));
+                
 
                 //add To Scene Manager
                 level.Add(clone);
