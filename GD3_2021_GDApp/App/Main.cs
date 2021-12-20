@@ -4456,11 +4456,11 @@ private void InitializeElevator(Scene level)
                 collider.Enable(false, 10);
 
                 //add the playerforeman line to play when the crate is spawned
-                
+                /*
                 object[] parameters3 = { "PlayerForeman line1" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters3));
-                
+                */
 
                 //add To Scene Manager
                 level.Add(clone);
