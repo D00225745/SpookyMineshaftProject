@@ -29,12 +29,19 @@ namespace GDApp
                 //below is original work for raising var pickupBehaviour that doesn't work
                 object[] parameters1 = { pickupBehaviour };
                 //raises the event as eventDispatcher
-                EventDispatcher.Raise(new EventData(EventCategoryType.Camera,
-                     EventActionType.OnWin, parameters1));
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                     EventActionType.OnPlay2D, parameters1));
                 //pickupBehaviour.Sound
 
 
 
+                
+                object[] parameters2 = { "PlayerForeman line2" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters2));
+                
+
+                /*
                 object[] parameters2 = { "Foreman lineplayerdefeat" };
                 //raises the event as eventDispatcher
                 EventDispatcher.Raise(new EventData(EventCategoryType.UI,
@@ -44,11 +51,6 @@ namespace GDApp
                 //raises the event as eventDispatcher
                 EventDispatcher.Raise(new EventData(EventCategoryType.UI,
                      EventActionType.OnWin, parameters3));
-
-                /*
-                object[] parameters2 = { "PlayerForeman line2" };
-                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters2));
                 */
 
                 /* object[] parameters1 = { "health", 1 };
