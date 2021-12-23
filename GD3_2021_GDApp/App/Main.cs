@@ -25,6 +25,7 @@ namespace GDApp
 {
     public class Main : Game
     {
+        Vector3 colliderScale = new Vector3(.03f, .03f, .03f);
         #region Fields
 
         private GraphicsDeviceManager _graphics;
@@ -579,6 +580,9 @@ namespace GDApp
             modelDictionary.Add("Assets/Models/cube");
             modelDictionary.Add("Assets/Models/teapot");
             modelDictionary.Add("Assets/Models/monkey1");
+            modelDictionary.Add("Assets/Models/tunnel");
+            modelDictionary.Add("Assets/Models/tunnel_curve");
+            modelDictionary.Add("Assets/Models/hub_improved");
         }
 
         /// <summary>
@@ -969,13 +973,16 @@ namespace GDApp
             textureDictionary.Add("grass", Content.Load<Texture2D>("Assets/Textures/Foliage/Ground/grass1"));
             textureDictionary.Add("crate1", Content.Load<Texture2D>("Assets/Textures/Props/Crates/crate1"));
 
+            textureDictionary.Add("rock", Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+            textureDictionary.Add("wood", Content.Load<Texture2D>("Assets/Textures/wood/Wood"));
+
             //ui
             textureDictionary.Add("ui_progress_32_8", Content.Load<Texture2D>("Assets/Textures/UI/Controls/ui_progress_32_8"));
             textureDictionary.Add("progress_white", Content.Load<Texture2D>("Assets/Textures/UI/Controls/progress_white"));
             textureDictionary.Add("HP_Bar_V2", Content.Load<Texture2D>("Assets/Textures/UI/Progress/HP_Bar_V2"));
 
             //menu
-            textureDictionary.Add("mainmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/mainmenu"));
+            textureDictionary.Add("mainmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/Menu_Startup_Animation_01 (1)_Moment"));
             textureDictionary.Add("audiomenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/audiomenu"));
             textureDictionary.Add("controlsmenu", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/controlsmenu"));
             textureDictionary.Add("exitmenuwithtrans", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/exitmenuwithtrans"));
@@ -1036,50 +1043,58 @@ namespace GDApp
 
             #endregion
             #region Level
-            InitializeTunnel1(activeScene);
-            InitializeTunnel2(activeScene);
-            InitializeTunnel3(activeScene);
-            InitializeTunnel4(activeScene);
-            InitializeTunnel5(activeScene);
-            InitializeTunnel6(activeScene);
-            InitializeTunnel7(activeScene);
-            InitializeTunnel8(activeScene);
-            InitializeTunnel9(activeScene);
-            InitializeTunnel10(activeScene);
-            InitializeTunnel11(activeScene);
-            InitializeTunnel12(activeScene);
-            InitializeTunnel13(activeScene);
-            InitializeTunnel14(activeScene);
-            InitializeTunnel15(activeScene);
-            InitializeTunnel16(activeScene);
-            InitializeTunnel17(activeScene);
-            InitializeTunnel18(activeScene);
-            InitializeTunnel19(activeScene);
-            InitializeTunnel20(activeScene);
-            InitializeTunnel21(activeScene);
-            InitializeTunnel22(activeScene);
-            InitializeTunnel23(activeScene);
-            InitializeTunnel24(activeScene);
+            ////Tunnel 1 - 10
+            InitializeTunnel(activeScene, new Vector3(10f, 0.28f, 54.7f), new Vector3(-90f, 90f, 0f), new Vector3(1f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(26f, 0.28f, 54.7f), new Vector3(-90f, 90f, 0f), new Vector3(1f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(42f, 0.28f, 54.7f), new Vector3(-90f, 90f, 0f), new Vector3(1f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(58f, 0.28f, 54.7f), new Vector3(-90f, 90f, 0f), new Vector3(1f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(74f, 0.28f, 54.7f), new Vector3(-90f, 90f, 0f), new Vector3(1f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(72f, 0.28f, -2f), new Vector3(-90f, 90f, 0f), new Vector3(1.2f, 1.2f, 1.4f));
+            InitializeTunnel(activeScene, new Vector3(106.5f, 0.28f, 34f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-13f, 0.28f, -77f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-13f, 0.28f, -93f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -125f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+
+            //Tunnel 11 - 20    16 dodge
+            InitializeTunnel(activeScene, new Vector3(-13f, 0.28f, -125f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-13f, 0.28f, -141f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -77f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -93f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -109f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-13f, 0.28f, -109f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -141f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -157f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-82f, 0.28f, -240.5f), new Vector3(-90f, 90f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(5.4f, 0.28f, -157f), new Vector3(-90f, 180f, 0f), new Vector3(1.2f, 1f, 1.3f));
+
+            //Tunnel 21 - 24
+            InitializeTunnel(activeScene, new Vector3(-44f, 0.28f, -5.6f), new Vector3(-90f, 90f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            //^^ Bit dodgy
+            InitializeTunnel(activeScene, new Vector3(-104f, 0.28f, 46f), new Vector3(-90f, 90f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-159f, 0.28f, 97.7f), new Vector3(-90f, 90f, 0f), new Vector3(1.2f, 1f, 1.3f));
+            InitializeTunnel(activeScene, new Vector3(-175f, 0.28f, 97.7f), new Vector3(-90f, 90f, 0f), new Vector3(1.2f, 1f, 1.3f));
 
             InitializeHub(activeScene);
 
-            InitializeTurns(activeScene);
-            InitializeTurns2(activeScene);
-            InitializeTurns3(activeScene);
-            InitializeTurns4(activeScene);
-            InitializeTurns5(activeScene);
-            InitializeTurns6(activeScene);
-            InitializeTurns7(activeScene);
-            InitializeTurns8(activeScene);
-            InitializeTurns9(activeScene);
-            InitializeTurns10(activeScene);
-            InitializeTurns11(activeScene);
-            InitializeTurns12(activeScene);
-            InitializeTurns13(activeScene);
-            InitializeTurns14(activeScene);
-            InitializeTurns15(activeScene);
-            InitializeTurns16(activeScene);
-            InitializeTurns17(activeScene);
+
+            //Corner tunnels
+            InitializeTurn(activeScene, new Vector3(-90f, 180f, 0f), new Vector3(-21.5f, 0.25f, 50f), new Vector3(1.3f, 1f, 1.30f), new Vector3(15f, -0.29f, -45f));
+            InitializeTurn(activeScene, new Vector3(-90f, 270f, 0f), new Vector3(102f, 0.25f, 61.5f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-45f, -0.27f, -13f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(114f, 0.25f, 10f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(13f, 0.25f, -185f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 180f, 0f), new Vector3(-46f, 0.25f, -201f), new Vector3(1.3f, 1f, 1.30f), new Vector3(15f, -0.27f, -47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(-38.3f, 0.25f, -229f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(-5.2f, 0.25f, -168f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(-48.5f, 0.25f, -180f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(-53f, 0.25f, -138f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 0f, 0f), new Vector3(-102f, 0.25f, -198f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-15f, -0.27f, 47f));
+            InitializeTurn(activeScene, new Vector3(-90f, 90f, 0f), new Vector3(-98f, 0.25f, -240.5f), new Vector3(1.3f, 1f, 1.30f), new Vector3(47f, -0.27f, 15f));
+            InitializeTurn(activeScene, new Vector3(-90f, 90f, 0f), new Vector3(-60f, 0.25f, -5.7f), new Vector3(1.3f, 1f, 1.30f), new Vector3(47f, -0.27f, 15f));
+            InitializeTurn(activeScene, new Vector3(-90f, 270f, 0f), new Vector3(-76f, 0.25f, 53.5f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-47f, -0.27f, -15f));
+            InitializeTurn(activeScene, new Vector3(-90f, 90f, 0f), new Vector3(-115f, 0.25f, 46f), new Vector3(1.3f, 1f, 1.30f), new Vector3(47f, -0.27f, 15f));
+            InitializeTurn(activeScene, new Vector3(-90f, 270f, 0f), new Vector3(-131f, 0.25f, 105f), new Vector3(1.3f, 1f, 1.30f), new Vector3(-47f, -0.27f, -15f));
+            InitializeTurn(activeScene, new Vector3(-90f, 90f, 0f), new Vector3(-175f, 0.25f, 97.7f), new Vector3(1.3f, 1f, 1.30f), new Vector3(45f, -0.27f, 15f));
+            InitializeTurn(activeScene, new Vector3(-90f, 90f, 0f), new Vector3(-181f, 0.25f, 127.7f), new Vector3(1.3f, 1f, 1.30f), new Vector3(45f, -0.27f, 15f));
 
             InitializeRail(activeScene);
             InitializeRail1(activeScene);
@@ -1205,883 +1220,97 @@ namespace GDApp
 
         #endregion
 
-        #region TunnelTurns
 
-        private void InitializeTurns(Scene level)
+
+        private void InitializeTunnel(Scene level, Vector3 tunnelTransform, Vector3 tunnelRotate, Vector3 tunnelScale)
         {
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
+            //tunnel
+            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
+            var shader = new BasicShader(Application.Content, false, true);
+            //re-use the vertices and indices of the model
+            var mesh = new QuadMesh();
 
-            //tunnel_turn
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
+            var archetypalTunnel = new GameObject("tunnel ground", GameObjectType.Architecture, true);
 
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
+            archetypalTunnel.Transform.Rotate(tunnelRotate);
+            archetypalTunnel.Transform.Translate(tunnelTransform);
+            archetypalTunnel.Transform.Scale(tunnelScale);
 
-            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-21.5f, 0.3f, 50f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
+                archetypalTunnel.AddComponent(new ModelRenderer(modelDictionary["tunnel"], new BasicMaterial
+                ("rock", shader, Color.White, 1, textureDictionary["rock"])));
+
+            Vector3 collisionRotate = new Vector3();
+            if (tunnelRotate == new Vector3(-90f, 90f, 0f))
+            {
+                collisionRotate = new Vector3(0f, 90f, 0f);
+            }
+            else if (tunnelRotate == new Vector3(-90f, 180f, 0f))
+            {
+                collisionRotate = new Vector3(0f, 180f, 0f);
+            }
+
+
+            //add Collision Surface(s)
+            collider = new Collider();
+            archetypalTunnel.AddComponent(collider);
+            collider.AddPrimitive(CollisionUtility.GetTriangleMesh(modelDictionary["tunnel"],
+                new Vector3(0, -0.3f, 0f), collisionRotate, colliderScale),
+                new MaterialProperties(.8f, .8f, .7f));
+            collider.Enable(true, 1);
+
+
+            level.Add(archetypalTunnel);
+        }
+
+        private void InitializeTurn(Scene level, Vector3 tunnelTurnRotate, Vector3 tunnelTurnTransform, Vector3 tunnelTurnScale, Vector3 collisionTransform)
+        {
+            //tunnel
+            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
+            var shader = new BasicShader(Application.Content, false, true);
+            //re-use the vertices and indices of the model
+            var mesh = new QuadMesh();
+
+            var archetypalTunnelTurn = new GameObject("tunnel ground", GameObjectType.Architecture, true);
+
+            archetypalTunnelTurn.Transform.Rotate(tunnelTurnRotate);
+            archetypalTunnelTurn.Transform.Translate(tunnelTurnTransform);
+            archetypalTunnelTurn.Transform.Scale(tunnelTurnScale);
+
+            archetypalTunnelTurn.AddComponent(new ModelRenderer(modelDictionary["tunnel_curve"], new BasicMaterial
+                ("rock", shader, Color.White, 1, textureDictionary["rock"])));
+
+            Vector3 collisionRotate = new Vector3(0f, 0f, 0f);
+            if (tunnelTurnRotate == new Vector3(-90f, 90f, 0f))
+            {
+                collisionRotate = new Vector3(0f, 0f, 0f);
+            }
+            else if (tunnelTurnRotate == new Vector3(-90f, 180f, 0f))
+            {
+                //collisionRotate = new Vector3(0f, 180f, 0f);
+                collisionRotate = new Vector3(0, 90f, 0f);
+            }
+            else if (tunnelTurnRotate == new Vector3(-90f, 270f, 0f))
+            {
+                collisionRotate = new Vector3(0f, 180f, 0f);
+            }
+            else if (tunnelTurnRotate == new Vector3(-90f, 0f, 0f))
+            {
+                collisionRotate = new Vector3(0f, -90f, 0f);
+            }
+
+            //add Collision Surface(s)
+            collider = new Collider();
+            archetypalTunnelTurn.AddComponent(collider);
+            collider.AddPrimitive(CollisionUtility.GetTriangleMesh(modelDictionary["tunnel_curve"],
+                collisionTransform, collisionRotate, new Vector3(.0275f, .037f, .035f)),
+                new MaterialProperties(.8f, .8f, .7f));
+            collider.Enable(true, 1);
+
 
             level.Add(archetypalTunnelTurn);
         }
 
-        private void InitializeTurns2(Scene level)
-        {
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
 
-            //tunnel_turn
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
-            archetypalTunnelTurn.Transform.Translate(102f, 0.3f, 61.5f);
-            archetypalTunnelTurn.Transform.Scale(1f, 1f, 1.3f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns3(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(114f, 0.3f, 10f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns4(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(13f, 0.28f, -185f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns5(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-46f, 0.28f, -201f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns6(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-38.3f, 0.28f, -229f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns7(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-5.2f, 0.28f, -168f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns8(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-48.5f, 0.28f, -180f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns9(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-53f, 0.28f, -138f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns10(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 0f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-102f, 0.28f, -198f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns11(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-98f, 0.28f, -240.5f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns12(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-60f, 0.28f, -5.7f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns13(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-76f, 0.28f, 53.5f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns14(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-115f, 0.28f, 46f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns15(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 270f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-131f, 0.28f, 105f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns16(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-175f, 0.28f, 97.7f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-
-        private void InitializeTurns17(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnelTurn = new GameObject("tunnel_turn", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel_curve"), material);
-            renderer.Material = material;
-            archetypalTunnelTurn.AddComponent(renderer);
-
-            archetypalTunnelTurn.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel_curve");
-
-            archetypalTunnelTurn.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnelTurn.Transform.Translate(-181f, 0.28f, 127.7f);
-            archetypalTunnelTurn.Transform.Scale(1.3f, 1f, 1.30f);
-
-            level.Add(archetypalTunnelTurn);
-        }
-        #endregion
-
-        #region Tunnel
-        private void InitializeTunnel1(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(10f, 0.28f, 54.7f);
-            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
-
-            renderer.Material = material;
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel2(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            // archetypalTunnel.IsStatic = false;
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(26f, 0.28f, 54.7f);
-            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
-
-            renderer.Material = material;
-            level.Add(archetypalTunnel);
-        }
-        private void InitializeTunnel3(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            //material.Texture = Content.Load<Texture2D>("Assets/Textures/Cave/Rock");
-            //material.Shader = new BasicShader(Application.Content);
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(42f, 0.28f, 54.7f);
-            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel4(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(58f, 0.28f, 54.7f);
-            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel5(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(74f, 0.28f, 54.7f);
-            archetypalTunnel.Transform.Scale(1f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-        //tunnel 2
-        private void InitializeTunnel6(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(72f, 0.28f, -2f);
-            archetypalTunnel.Transform.Scale(1.2f, 1.2f, 1.4f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel7(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(106.5f, 0.28f, 34f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel8(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(-13f, 0.28f, -77f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel9(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(-13f, 0.28f, -93f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel10(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(-13f, 0.28f, -109f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel11(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(-13f, 0.28f, -125f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel12(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(-13f, 0.28f, -141f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-        //Right side of split tunnel (on elevator side)
-        private void InitializeTunnel13(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -77f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel14(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -93f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel15(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -109f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel16(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -125f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel17(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -141f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel18(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -157f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-
-        private void InitializeTunnel19(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(-82f, 0.28f, -240.5f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel20(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 180f, 0f);
-            archetypalTunnel.Transform.Translate(5.4f, 0.28f, -157f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        //south tunnel
-        private void InitializeTunnel21(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(-44f, 0.28f, -5.6f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel22(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(-104f, 0.28f, 46f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel23(Scene level)
-        {
-            //tunnel
-
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(-159f, 0.28f, 97.7f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-
-        private void InitializeTunnel24(Scene level)
-        {
-            //tunnel
-            var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
-
-            var archetypalTunnel = new GameObject("tunnel", GameObjectType.Architecture);
-            var renderer = new ModelRenderer(Content.Load<Model>("Assets/Models/tunnel"), material);
-            renderer.Material = material;
-            archetypalTunnel.AddComponent(renderer);
-
-            archetypalTunnel.AddComponent(renderer);
-            renderer.Model = Content.Load<Model>("Assets/Models/tunnel");
-
-            archetypalTunnel.Transform.Rotate(-90f, 90f, 0f);
-            archetypalTunnel.Transform.Translate(-175f, 0.28f, 97.7f);
-            archetypalTunnel.Transform.Scale(1.2f, 1f, 1.3f);
-
-            renderer.Material = material;
-
-            level.Add(archetypalTunnel);
-        }
-        #endregion
-
-        #region Elements
         private void InitializeHub(Scene level)
         {
             var material = new BasicMaterial("model material", new BasicShader(Application.Content), Content.Load<Texture2D>("Assets/Textures/Cave/Rock"));
@@ -2095,10 +1324,23 @@ namespace GDApp
             renderer.Model = Content.Load<Model>("Assets/Models/hub_improved");
 
             archetypalCave.Transform.Rotate(-90f, 90f, 0f);
-            archetypalCave.Transform.Translate(1.2f, 0.2f, 1.3f);
+            archetypalCave.Transform.Translate(1.2f, 0.1f, 1.3f);
+
+
+            //add Collision Surface(s)
+            //collider = new Collider();
+            //archetypalCave.AddComponent(collider);
+            //collider.AddPrimitive(CollisionUtility.GetTriangleMesh(modelDictionary["hub_improved"],
+            //    new Vector3(0f, -1f, 45f), new Vector3(0f, 90f, 0f), new Vector3(0.0115f, 0.02f, 0.013f)),
+            //    new MaterialProperties(.8f, .8f, .7f));
+            //collider.Enable(true, 1);
+
 
             level.Add(archetypalCave);
         }
+
+        #region Elements
+        
 
         
 private void InitializeElevator(Scene level)
@@ -3844,7 +3086,7 @@ private void InitializeElevator(Scene level)
             var mainMenuUIScene = new UIScene(AppData.MENU_MAIN_NAME);
 
             /**************************** Background Image ****************************/
-            /*
+            
             //main background
             var texture = textureDictionary["mainmenu"];
             //get how much we need to scale background to fit screen, then downsizes a little so we can see game behind background
@@ -3859,8 +3101,8 @@ private void InitializeElevator(Scene level)
                 texture.GetOriginAtCenter(), //if we want to position image on screen center then we need to set origin as texture center
                 texture);
 
-            */
-            var texture = textureDictionary["progress_white"];
+            
+             texture = textureDictionary["progress_white"];
             var position = new Vector2(_graphics.PreferredBackBufferWidth / 2, 50);
             var origin = new Vector2(texture.Width / 2, texture.Height / 2);
 
@@ -3869,7 +3111,7 @@ private void InitializeElevator(Scene level)
             
             //add a health bar in the centre of the game window
 
-            texture = textureDictionary["checkerboard"]; //any texture given we will replace it
+            texture = textureDictionary["mainmenu"]; //any texture given we will replace it
             position = new Vector2(200, 200);
 
             var video = videoDictionary["main_menu_video"];
@@ -4072,10 +3314,10 @@ private void InitializeElevator(Scene level)
             //Creating the HUD
             var hudTextureObj = new UITextureObject("HUD",
                  UIObjectType.Texture,
-                 new Transform2D(new Vector2(0, 0),
+                 new Transform2D(new Vector2(15, 760),
                  new Vector2(1, 1),
                  MathHelper.ToRadians(0)),
-                 0, Content.Load<Texture2D>("Assets/Textures/UI/Progress/hud"));
+                 0, Content.Load<Texture2D>("Assets/Textures/UI/Progress/UI_Final"));
             //add the ui element to the scene
             hudTextureObj.Color = Color.White;
             mainGameUIScene.Add(healthTextureObj);
@@ -4456,11 +3698,11 @@ private void InitializeElevator(Scene level)
                 collider.Enable(false, 10);
 
                 //add the playerforeman line to play when the crate is spawned
-                /*
+                
                 object[] parameters3 = { "PlayerForeman line1" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnPlay2D, parameters3));
-                */
+                
 
                 //add To Scene Manager
                 level.Add(clone);
