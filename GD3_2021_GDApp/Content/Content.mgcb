@@ -1125,7 +1125,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/UI/Backgrounds/mainmenu.PNG
 
-#begin Assets/Textures/UI/Backgrounds/Menu_Startup_Animation_01 (1)_Moment.jpg
+#begin Assets/Textures/UI/Backgrounds/Menu_Startup_Animation_01 (1)_Moment.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1135,7 +1135,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Textures/UI/Backgrounds/Menu_Startup_Animation_01 (1)_Moment.jpg
+/build:Assets/Textures/UI/Backgrounds/Menu_Startup_Animation_01 (1)_Moment.png
 
 #begin Assets/Textures/UI/Controls/genericbtn.png
 /importer:TextureImporter
@@ -1256,6 +1256,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/UI/Progress/hud.png
+
+#begin Assets/Textures/UI/Progress/UI_Final.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/UI/Progress/UI_Final.png
 
 #begin Assets/Textures/UI/Progress/ui_progress_32_8.png
 /importer:TextureImporter
